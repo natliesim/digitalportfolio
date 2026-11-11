@@ -287,7 +287,7 @@ h1 em { font-style: italic; font-weight: 500; }
 .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .gallery a { display: block; border: 1px solid var(--rule); background: var(--ink); line-height: 0; transition: transform .15s; }
 .gallery a:hover { transform: translateY(-2px); }
-.gallery img { width: 100%; height: auto; aspect-ratio: 1280 / 807; object-fit: cover; }
+.gallery img { width: 100%; height: auto; aspect-ratio: 1280 / 726; object-fit: cover; }
 @media (max-width: 640px) { .gallery { grid-template-columns: 1fr; } }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .note { font-size: 12.5px; color: var(--ink-soft); display: inline-flex; gap: 6px; align-items: center; }
@@ -369,7 +369,7 @@ h1 em { font-style: italic; font-weight: 500; }
       <h1>Bringing <em>visions</em> to life with digital solutions.</h1>
       <div class="hello">
         <div class="hand" aria-hidden="true"><span>communicating</span><span>designing</span><span>building</span><span>delivering</span></div>
-        <p class="intro">Hi, I'm <b>Natalie</b>! I'm a data science graduate from Universiti Malaysia Sabah (UMS). During my data analyst internship at Maxis, I built the company's first customer churn prediction model. Lately I've been building websites for small businesses, alongside side projects in game development and predictive machine learning. I love solving problems with digital solutions.</p>
+        <p class="intro">I'm <b>Natalie</b>, a data science graduate of Universiti Malaysia Sabah (UMS). As a Data Analyst Intern at Maxis, I developed the company's first customer churn prediction model. I now design and build websites for small and growing businesses, and explore game development and predictive modelling in my own projects. I'm drawn to problems where data, design and engineering meet.</p>
       </div>
     </div>
 
@@ -424,7 +424,7 @@ h1 em { font-style: italic; font-weight: 500; }
   <section class="featured wrap" aria-labelledby="featTitle">
     <div class="feat-side">
       <h2 id="featTitle">Featured</h2>
-      <p>Highlights from my internship, degree and client work.</p>
+      <p>Selected work across industry, research and client engagements.</p>
       <button class="btn" type="button" id="viewAll">View all</button>
     </div>
     <div class="feat-row">
@@ -444,7 +444,7 @@ h1 em { font-style: italic; font-weight: 500; }
         </span>
         <span class="feat-body">
           <span class="feat-title">Swarm-Optimized GNNs for Drug Repurposing</span>
-          <span class="feat-line">PSO and ACO tune a graph neural network on a biomedical knowledge graph.</span>
+          <span class="feat-line">Bio-inspired optimisation of graph neural networks to find new uses for existing drugs.</span>
           <span class="feat-foot"><span>2025 – 2026</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span>
         </span>
       </button>
@@ -455,7 +455,7 @@ h1 em { font-style: italic; font-weight: 500; }
         </span>
         <span class="feat-body">
           <span class="feat-title">et al. studio Website</span>
-          <span class="feat-line">Branding and an online merch store for a Kuala Lumpur tattoo studio.</span>
+          <span class="feat-line">Brand presence and e-commerce for a Kuala Lumpur tattoo studio, delivered end to end.</span>
           <span class="feat-foot"><span>Oct 2026 – now</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span>
         </span>
       </button>
@@ -478,7 +478,7 @@ h1 em { font-style: italic; font-weight: 500; }
         </span>
         <span class="feat-body">
           <span class="feat-title">Customer Churn Prediction Model</span>
-          <span class="feat-line">XGBoost on BigQuery. Catches 50.7% of churners in the top-risk decile.</span>
+          <span class="feat-line">An XGBoost model that isolates half of all churners within the highest-risk decile.</span>
           <span class="feat-foot"><span>Mar – Aug 2026</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span>
         </span>
       </button>
@@ -539,80 +539,80 @@ const GITHUB = "https://github.com/natliesim";
 const SECTIONS = {
   work: {
     letter: "W", name: "Work", color: "var(--orange)",
-    desc: "Industry projects from my internship in Maxis's Data & AI team.",
+    desc: "Industry work from the Data & AI division at Maxis.",
     sub: "Data Analyst Intern · Maxis Broadband · Mar–Aug 2026",
     projects: [
       {
         id: "churn",
         title: "Customer Churn Prediction Model",
         kicker: "Maxis · Applied Analytics",
-        line: "The team's first customer-level churn model.",
+        line: "The Applied Analytics team's first customer-level churn model.",
         when: "Mar – Aug 2026", where: "Menara Maxis, Kuala Lumpur",
-        summary: "Built the Applied Analytics team's first customer-level model for predicting which broadband customers are likely to churn, so retention campaigns can focus on the people most at risk.",
+        summary: "Designed and delivered the Applied Analytics team's first customer-level churn model, giving retention teams a ranked view of the broadband subscribers most likely to leave.",
         points: [
-          "Built customer-level features with SQL on BigQuery.",
-          "Trained and tuned an XGBoost classifier in Python.",
-          "Ranked customers by risk so the business can target the top deciles first.",
+          "Engineered customer-level features in SQL on BigQuery.",
+          "Trained and tuned a gradient-boosted (XGBoost) classifier in Python.",
+          "Produced risk-ranked deciles so retention campaigns can be directed where they matter most.",
         ],
         stats: [
-          { v: "13×", l: "lift in the top 1% of scored customers" },
-          { v: "50.7%", l: "of churners caught in the highest-risk decile" },
+          { v: "13×", l: "lift within the top percentile of scored customers" },
+          { v: "50.7%", l: "of all churners captured in the highest-risk decile" },
         ],
         tools: ["Python", "SQL", "XGBoost", "BigQuery", "Vertex AI", "Google Cloud Platform", "pandas", "scikit-learn"],
         github: null,
-        note: "Code and data belong to Maxis, so there is no public repository.",
+        note: "Proprietary to Maxis. Source code is not publicly available.",
       },
       {
         id: "monitoring",
         title: "Model Monitoring Dashboard",
         kicker: "Maxis · MLOps",
-        line: "Post-deployment monitoring in Power BI.",
+        line: "Post-deployment model observability in Power BI.",
         when: "2026", where: "Maxis, Kuala Lumpur",
-        summary: "Improved a Power BI monitoring solution connected to production data pipelines, so the team can track deployed models after release.",
+        summary: "Strengthened a Power BI monitoring solution integrated with production data pipelines, giving the team continuous visibility into model performance after deployment.",
         points: [
-          "Updated monitoring scripts and performance checks.",
-          "Rebuilt dashboard views for post-deployment model health.",
+          "Revised monitoring scripts and automated performance checks.",
+          "Refined dashboard views to surface model health at a glance.",
         ],
         stats: [],
         tools: ["Power BI", "SQL", "Python", "BigQuery"],
         github: null,
-        note: "Internal company work, so there is no public repository.",
+        note: "Internal to Maxis. Source code is not publicly available.",
       },
       {
         id: "gcp",
         title: "GCP Cost Audit",
         kicker: "Maxis · Cloud",
-        line: "A 25% cut in estimated monthly cloud spend.",
+        line: "A 25% reduction in estimated monthly cloud expenditure.",
         when: "2026", where: "Maxis, Kuala Lumpur",
-        summary: "Audited the team's Google Cloud resources (tables, notebooks, API keys and configurations) and cleaned up what wasn't needed. I also prototyped BigQuery Graph Analytics for future use cases.",
+        summary: "Audited and optimised the team's Google Cloud estate, from tables and notebooks to API keys and configurations, retiring redundant resources. In parallel, I prototyped BigQuery Graph Analytics to assess graph-based modelling for future use cases.",
         points: [
-          "Reviewed BigQuery tables, Vertex AI notebooks, API keys and configs.",
-          "Prototyped graph-based representations of complex data relationships with BigQuery Graph.",
+          "Reviewed BigQuery tables, Vertex AI notebooks, API keys and configurations for redundancy.",
+          "Prototyped graph representations of complex data relationships in BigQuery Graph.",
         ],
-        stats: [{ v: "−25%", l: "estimated monthly cloud spend" }],
+        stats: [{ v: "−25%", l: "estimated monthly cloud expenditure" }],
         tools: ["Google Cloud Platform", "BigQuery", "BigQuery Graph", "Vertex AI"],
         github: null,
-        note: "Internal company work, so there is no public repository.",
+        note: "Internal to Maxis. Source code is not publicly available.",
       },
     ],
   },
 
   school: {
     letter: "S", name: "School", color: "var(--blue)",
-    desc: "My final year project and national data competitions.",
+    desc: "Research, coursework and national data competitions.",
     sub: "B.CS Data Science · Universiti Malaysia Sabah · CGPA 3.85",
     projects: [
       {
         id: "fyp",
         title: "Swarm Intelligence-Optimized GNNs for Drug Repurposing",
         kicker: "Final Year Project",
-        line: "A bio-inspired, adaptive approach to tuning graph neural networks.",
+        line: "A bio-inspired, adaptive approach to optimising graph neural networks.",
         when: "2025 – 2026", where: "Universiti Malaysia Sabah",
-        summary: "Drug repurposing looks for new uses for existing drugs. I framed it as link prediction on a biomedical knowledge graph and used swarm intelligence to tune a Relational Graph Convolutional Network (RGCN).",
+        summary: "Drug repurposing seeks new therapeutic uses for approved drugs, sparing years of development. I framed the problem as link prediction on a biomedical knowledge graph and applied swarm intelligence to optimise a Relational Graph Convolutional Network (RGCN).",
         points: [
-          "Built an RGCN to predict drug–disease links on a biomedical knowledge graph.",
-          "Implemented Particle Swarm Optimization (PSO) and Ant Colony Optimization (ACO) to search the model's hyperparameters.",
-          "Compared the swarm-tuned models against a baseline to evaluate the gain.",
+          "Built an RGCN to predict drug–disease associations across a heterogeneous biomedical knowledge graph.",
+          "Implemented Particle Swarm Optimisation (PSO) and Ant Colony Optimisation (ACO) to search the model's hyperparameter space.",
+          "Benchmarked the swarm-optimised configurations against a baseline model.",
         ],
         stats: [],
         tools: ["Python", "PyTorch", "PyTorch Geometric", "RGCN", "PSO", "ACO", "Knowledge graphs"],
@@ -622,12 +622,12 @@ const SECTIONS = {
         id: "banana",
         title: "Banana Ripeness Classifier",
         kicker: "Sustainable Food Nexus Data Challenge",
-        line: "Top 10 national finalist · CNN image classifier.",
+        line: "National top-10 finalist · computer vision.",
         when: "Aug 2023", where: "Johor Bahru, Johor",
-        summary: "With my team, I built a Convolutional Neural Network that classifies bananas by ripening stage from photos, aimed at reducing food waste along the supply chain.",
+        summary: "A convolutional neural network that classifies bananas by ripening stage from images, developed with my team to help reduce post-harvest food waste.",
         points: [
-          "Prepared and augmented an image dataset of banana ripening stages.",
-          "Trained a CNN classifier and evaluated it per class.",
+          "Curated and augmented an image dataset spanning each ripening stage.",
+          "Trained a CNN classifier and evaluated its performance class by class.",
         ],
         stats: [{ v: "Top 10", l: "national finalist" }],
         tools: ["Python", "TensorFlow / Keras", "CNN", "Image augmentation"],
@@ -637,12 +637,12 @@ const SECTIONS = {
         id: "cpi",
         title: "Medical Tourism & Health CPI",
         kicker: "Malaysia Techlympics 2023",
-        line: "Top 10 national finalist · data visualisation.",
+        line: "National top-10 finalist · data storytelling.",
         when: "Dec 2023", where: "Putrajaya",
-        summary: "A team data visualisation that used Malaysia's Health Consumer Price Index to explore the country's medical tourism story.",
+        summary: "A team visual analysis that drew on Malaysia's Health Consumer Price Index to examine the country's standing as a medical tourism destination.",
         points: [
-          "Cleaned and combined public Health CPI data.",
-          "Designed charts to compare healthcare price trends over time.",
+          "Cleaned and integrated public Health CPI data.",
+          "Designed visualisations tracing healthcare price trends over time.",
         ],
         stats: [{ v: "Top 10", l: "national finalist" }],
         tools: ["Python", "Power BI", "Data visualisation"],
@@ -653,16 +653,16 @@ const SECTIONS = {
 
   personal: {
     letter: "P", name: "Personal", color: "var(--pink)",
-    desc: "Side projects, freelance sites and things I built for fun.",
-    sub: "Built outside class and work",
+    desc: "Client commissions and independent builds.",
+    sub: "Client commissions and independent builds",
     projects: [
       {
         id: "tokki",
         title: "Tokki Dokki",
-        kicker: "Personal project",
-        line: "토끼 (tokki) means rabbit in Korean.",
+        kicker: "Independent project",
+        line: "토끼 (tokki) is Korean for rabbit.",
         when: "2025", where: "Personal",
-        summary: "Tokki Dokki is a personal side project. A full write-up is coming soon.",
+        summary: "An independent side project. A full case study is in progress.",
         points: [],
         stats: [],
         tools: ["HTML", "CSS", "JavaScript"],
@@ -672,14 +672,14 @@ const SECTIONS = {
         id: "etal",
         title: "et al. studio Website",
         kicker: "Client website · Freelance",
-        line: "Branding and an online merch store for a Kuala Lumpur tattoo studio.",
+        line: "Brand presence and e-commerce for a Kuala Lumpur tattoo studio.",
         when: "Oct 2026 – present", where: "Kuala Lumpur · Freelance",
-        summary: "et al. studio is a tattoo studio in Kuala Lumpur. They wanted a website to build their brand and sell merchandise online. I built it end to end, from the design to the checkout.",
+        summary: "et al. studio is a tattoo collective in Kuala Lumpur. The brief called for a digital home that carried the studio's quiet, editorial identity and could sell artist merchandise online. I delivered it end to end, from visual design to checkout.",
         points: [
-          "Designed and built the site in HTML and CSS, with pages for the studio, its resident artists and its merchandise.",
-          "Built a merchandise store with categories for tattoo stickers, postcards and clothing, grouped by artist.",
-          "Added Wix plugins for customer logins, payments and storage.",
-          "Connected HitPay so customers can pay with local Malaysian payment methods.",
+          "Designed and developed the site in HTML and CSS, spanning the studio's story, its resident artists and a merchandise catalogue.",
+          "Structured the catalogue by category (tattoo stickers, postcards and clothing) and by artist.",
+          "Integrated Wix plugins for member logins, payments and media storage.",
+          "Connected HitPay to support local Malaysian payment methods at checkout.",
         ],
         stats: [],
         tools: ["HTML", "CSS", "Wix Headless", "Wix plugins", "HitPay"],
@@ -694,13 +694,13 @@ const SECTIONS = {
       {
         id: "predictive",
         title: "Predictive Analysis",
-        kicker: "Personal ML project",
+        kicker: "Independent ML project",
         line: "End-to-end predictive modelling on a public dataset.",
         when: "2025", where: "Personal",
-        summary: "A self-directed project covering the full predictive modelling workflow: cleaning, exploratory analysis, feature engineering, model comparison and evaluation.",
+        summary: "A self-directed study of the complete predictive modelling workflow, from data cleaning and exploratory analysis to feature engineering, model selection and evaluation.",
         points: [
-          "Explored and cleaned the data, then engineered features.",
-          "Compared several models and evaluated them on held-out data.",
+          "Profiled and cleaned the data, then engineered informative features.",
+          "Compared candidate models and validated them on held-out data.",
         ],
         stats: [],
         tools: ["Python", "pandas", "scikit-learn", "Jupyter"],
@@ -726,8 +726,8 @@ const TILES = [
   { key: "work",     cls: "t-work",     letter: "W", name: "Work",     desc: SECTIONS.work.desc,     foot: `${SECTIONS.work.projects.length} projects` },
   { key: "school",   cls: "t-school",   letter: "S", name: "School",   desc: SECTIONS.school.desc,   foot: `${SECTIONS.school.projects.length} projects` },
   { key: "personal", cls: "t-personal", letter: "P", name: "Personal", desc: SECTIONS.personal.desc, foot: `${SECTIONS.personal.projects.length} projects` },
-  { key: "about",    cls: "t-about",    letter: "A", name: "About",    desc: "Education, awards, and a bit about me.", foot: "Dean's List" },
-  { key: "toolkit",  cls: "t-toolkit",  letter: "T", name: "Toolkit",  desc: "The languages, platforms and tools I use.", foot: "Python · SQL · R" },
+  { key: "about",    cls: "t-about",    letter: "A", name: "About",    desc: "Education, honours and the path so far.", foot: "Dean's List" },
+  { key: "toolkit",  cls: "t-toolkit",  letter: "T", name: "Toolkit",  desc: "Languages, platforms and methods I work with.", foot: "Python · SQL · R" },
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -793,10 +793,10 @@ function renderAbout() {
   body.innerHTML = `<div class="detail wrap" style="grid-column:1/-1"><div class="detail-inner" style="max-width:980px">
     <div>
       <span class="chip-label">Natalie Sim En Xi</span>
-      <h2>Data science student who likes turning messy data into decisions.</h2>
+      <h2>A data scientist who turns complex data into clear decisions.</h2>
       <div class="where">Kuching, Sarawak, Malaysia</div>
     </div>
-    <p>I'm finishing a Bachelor of Computer Science in Data Science at Universiti Malaysia Sabah. I've worked on churn modelling and cloud analytics at Maxis, studied a semester abroad in Indonesia, and I'm happiest somewhere between SQL, a notebook and a good chart.</p>
+    <p>I hold a Bachelor of Computer Science in Data Science from Universiti Malaysia Sabah, with a CGPA of 3.85 and a place on the Dean's List every semester. My experience spans churn modelling and cloud analytics at Maxis, a semester abroad in Indonesia and freelance web development. I do my best work where rigorous analysis meets thoughtful design.</p>
     <div class="stats">
       <div class="stat"><b>3.85</b><span>CGPA out of 4.00</span></div>
       <div class="stat"><b>Every sem</b><span>Dean's List, UMS</span></div>
@@ -812,11 +812,11 @@ function renderAbout() {
       </div>
     </div>
     <div>
-      <div class="sec-label">Also</div>
+      <div class="sec-label">Beyond the degree</div>
       <div class="grid2">
         <div class="box"><span class="when">Feb – Aug 2023</span><h3>AIESEC in UMS</h3><p>Organising committee, Project Nature Warrior 10.0 (SDG 14, Life Below Water).</p></div>
-        <div class="box"><span class="when">Semester breaks</span><h3>English tutor</h3><p>Personalised lessons for students from China and Taiwan.</p></div>
-        <div class="box"><span class="when">Ongoing</span><h3>Freelance website builder</h3><p>Websites for small businesses, built to each client's brief.</p></div>
+        <div class="box"><span class="when">Semester breaks</span><h3>English tutor</h3><p>Tailored English lessons for students from China and Taiwan, adapted to each learner's age and level.</p></div>
+        <div class="box"><span class="when">Ongoing</span><h3>Freelance website builder</h3><p>Bespoke websites for small businesses, shaped around each client's brief.</p></div>
       </div>
     </div>
     <div class="actions">
@@ -836,7 +836,7 @@ function renderToolkit() {
     ["Languages I speak", ["English", "Mandarin", "Malay", "Korean"]],
   ];
   body.innerHTML = `<div class="detail wrap" style="grid-column:1/-1"><div class="detail-inner" style="max-width:980px">
-    <div><span class="chip-label">Toolkit</span><h2>What I work with</h2></div>
+    <div><span class="chip-label">Toolkit</span><h2>Tools and methods</h2></div>
     <div class="grid2">${groups.map(([g, items]) => `<div class="box"><h3>${g}</h3><div class="tools" style="margin-top:8px">${items.map(i => `<span class="tool">${esc(i)}</span>`).join("")}</div></div>`).join("")}</div>
     <div><div class="sec-label">Relevant coursework</div><p>Machine Learning for Data Science, Statistics and Data Analysis, Data Mining and Warehousing, Data Visualization, Databases, Big Data, Artificial Intelligence, Natural Language Processing.</p></div>
   </div></div>`;
