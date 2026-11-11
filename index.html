@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Natalie Sim Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Natalie Sim: data science student and analyst. Work, school and personal projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,700;0,800;1,700;1,800&family=Caveat:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one screen. Grid header bar, hero with doodles, a row of five lettered tiles, footer strip. Tiles open full panels. */
+:root {
+  --paper: #F1EEE7;
+  --paper-2: #E8E4DB;
+  --ink: #1C1B19;
+  --ink-soft: #57534C;
+  --rule: #CFC9BE;
+  --card: #FBFAF7;
+  --pink: #E78AAE;
+  --yellow: #F3C03E;
+  --orange: #E25A2C;
+  --blue: #3D85CC;
+  --stone: #D8D2C8;
+  --green: #3E9B57;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hand: "Caveat", "Segoe Print", "Comic Sans MS", cursive;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 14px/1.5 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.page {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+}
+.wrap {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- header bar ---------- */
+.bar {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr 1fr auto;
+  border-bottom: 1px solid var(--rule);
+  align-items: stretch;
+}
+.bar > * { padding-block: 12px; display: flex; align-items: center; }
+.bar > * + * { border-left: 1px solid var(--rule); padding-left: 20px; }
+.logo { gap: 10px; text-decoration: none; padding-right: 24px; }
+.logo-mark {
+  width: 34px; height: 34px; border-radius: 8px; background: var(--ink); color: var(--paper);
+  display: grid; place-items: center; font: 800 15px/1 var(--display); letter-spacing: -.02em;
+}
+.logo-name { font: 800 24px/1 var(--display); letter-spacing: -.03em; }
+.logo-name small { font: 600 12px/1 var(--display); letter-spacing: .04em; margin-left: 4px; }
+.meta { font: 500 11px/1.35 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+.bar .cv-cell { padding-right: 0; padding-left: 16px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1.5px solid var(--ink); border-radius: 999px; background: var(--card);
+  padding: 8px 16px; font: 700 12px/1 var(--display); letter-spacing: .08em; text-transform: uppercase;
+  text-decoration: none; white-space: nowrap; transition: background .15s, color .15s, transform .15s;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn svg { width: 15px; height: 15px; }
+.btn.solid { background: var(--ink); color: var(--paper); }
+.btn.solid:hover { background: var(--orange); border-color: var(--orange); color: var(--ink); }
+
+/* ---------- hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 24px;
+  padding-block: clamp(20px, 3.2vh, 40px) clamp(14px, 2.4vh, 28px);
+  align-items: center;
+}
+.tagrow { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.tag {
+  background: var(--yellow); padding: 6px 10px; font: 700 11px/1 var(--display);
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.status { display: inline-flex; align-items: center; gap: 7px; font: 500 11px/1 var(--mono); color: var(--ink-soft); text-transform: uppercase; letter-spacing: .06em; }
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px #3E9B5733; }
+h1 {
+  margin: 0;
+  font: 800 clamp(28px, 3.7vw, 54px)/1.04 var(--display);
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+h1 em { font-style: italic; font-weight: 800; }
+.hello { display: flex; gap: 28px; align-items: flex-start; margin-top: 16px; flex-wrap: wrap; }
+.hand { font: 600 22px/1.05 var(--hand); color: var(--ink); }
+.hand span { display: block; padding-left: 22px; }
+.hand span:first-child { padding-left: 0; }
+.hand span:first-child::before { content: "+ "; }
+.intro { max-width: 42ch; color: var(--ink-soft); margin: 2px 0 0; }
+.intro b { color: var(--ink); font-weight: 600; }
+
+.doodles { position: relative; height: clamp(190px, 28vh, 300px); }
+.doodles svg { position: absolute; overflow: visible; }
+.float { animation: bob 6s ease-in-out infinite; }
+.float.d2 { animation-delay: -2s; } .float.d3 { animation-delay: -4s; }
+@keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+.spin { animation: spin 14s linear infinite; transform-origin: center; transform-box: fill-box; }
+@keyframes spin { to { transform: rotate(360deg) } }
+
+/* ---------- tiles ---------- */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  padding-block: 0 18px;
+  min-height: 0;
+}
+.tile {
+  position: relative;
+  display: flex; flex-direction: column;
+  border: 0; text-align: left;
+  padding: 18px 18px 16px;
+  min-height: 250px;
+  transition: transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s;
+  overflow: hidden;
+}
+.tile:hover { transform: translateY(-5px); box-shadow: 0 10px 0 -2px var(--ink); }
+.tile:active { transform: translateY(-1px); }
+.t-work { background: var(--orange); }
+.t-school { background: var(--blue); }
+.t-personal { background: var(--pink); }
+.t-about { background: var(--yellow); }
+.t-toolkit { background: var(--stone); }
+.tile-head { display: flex; align-items: baseline; gap: 6px; }
+.tile-letter { font: 800 clamp(44px, 4.4vw, 64px)/.8 var(--display); letter-spacing: -.04em; }
+.tile-name { font: 800 13px/1 var(--display); letter-spacing: .06em; text-transform: uppercase; }
+.tile-desc { margin: 12px 0 0; font-size: 12.5px; line-height: 1.45; max-width: 24ch; }
+.tile-art { flex: 1; display: grid; place-items: center; padding-block: 10px; min-height: 90px; }
+.tile-art svg { width: min(120px, 70%); height: auto; max-height: 120px; transition: transform .25s; }
+.tile:hover .tile-art svg { transform: rotate(-4deg) scale(1.06); }
+.tile-foot { display: flex; justify-content: space-between; align-items: center; font: 500 11px/1 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+.tile-foot svg { width: 22px; height: 22px; transition: transform .2s; }
+.tile:hover .tile-foot svg { transform: translateX(5px); }
+
+/* ---------- footer strip ---------- */
+.foot {
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr 1fr;
+  border-top: 1px solid var(--rule);
+}
+.foot > * { padding-block: 14px; min-width: 0; }
+.foot > * + * { border-left: 1px solid var(--rule); padding-left: 20px; }
+.reminder { display: flex; gap: 14px; align-items: center; }
+.reminder .meta { display: block; margin-bottom: 4px; }
+.reminder strong { font: 700 17px/1.25 var(--body); display: block; }
+.reminder .tr { font-size: 12px; color: var(--ink-soft); }
+.contact { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; }
+.contact a { text-decoration: none; display: inline-flex; gap: 6px; align-items: center; font-weight: 500; }
+.contact a:hover { text-decoration: underline; }
+.contact svg { width: 16px; height: 16px; }
+.copy-mail { border: 1px dashed var(--ink-soft); background: transparent; border-radius: 6px; padding: 3px 8px; font: 500 12px/1.4 var(--mono); }
+.copy-mail:hover { border-style: solid; }
+.made { display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+.made .meta { font-size: 10.5px; }
+
+/* ---------- panel ---------- */
+.panel {
+  position: fixed; inset: 0; z-index: 50;
+  background: var(--paper);
+  display: grid; grid-template-rows: auto 1fr;
+  animation: panelIn .28s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes panelIn { from { transform: translateY(24px); opacity: 0 } }
+.panel-head {
+  background: var(--accent, var(--stone));
+  display: flex; align-items: center; gap: 16px;
+  padding-top: max(14px, env(safe-area-inset-top, 0px));
+  padding-bottom: 14px;
+}
+.panel-letter { font: 800 56px/.8 var(--display); letter-spacing: -.04em; }
+.panel-title { font: 800 20px/1.1 var(--display); text-transform: uppercase; letter-spacing: .02em; }
+.panel-sub { font-size: 13px; margin-top: 3px; }
+.panel-head .spacer { flex: 1; }
+.close {
+  width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--card);
+  display: grid; place-items: center; flex: none;
+}
+.close:hover { background: var(--ink); color: var(--paper); }
+.close svg { width: 18px; height: 18px; }
+.panel-body {
+  display: grid; grid-template-columns: minmax(240px, 340px) minmax(0, 1fr);
+  min-height: 0;
+}
+.list {
+  border-right: 1px solid var(--rule); overflow-y: auto;
+  padding-block: 18px; display: flex; flex-direction: column; gap: 10px;
+}
+.item {
+  text-align: left; background: var(--card); border: 1.5px solid transparent; padding: 14px;
+  display: grid; gap: 6px; transition: border-color .15s, transform .15s;
+}
+.item:hover { border-color: var(--rule); transform: translateX(3px); }
+.item[aria-current="true"] { border-color: var(--ink); box-shadow: 4px 4px 0 var(--accent, var(--ink)); }
+.item-kicker { font: 500 10.5px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+.item-title { font: 700 15px/1.25 var(--display); }
+.item-line { font-size: 12.5px; color: var(--ink-soft); }
+
+.detail { overflow-y: auto; padding-block: 28px 40px; }
+.detail-inner { max-width: 760px; display: grid; gap: 22px; }
+.chip-label {
+  display: inline-block; background: var(--accent, var(--stone)); padding: 5px 9px;
+  font: 700 10.5px/1 var(--display); letter-spacing: .1em; text-transform: uppercase;
+}
+.detail h2 { margin: 10px 0 0; font: 800 clamp(24px, 3vw, 38px)/1.08 var(--display); letter-spacing: -.02em; text-wrap: balance; }
+.detail .where { margin-top: 6px; color: var(--ink-soft); font: 500 12px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .05em; }
+.detail p { margin: 0; max-width: 65ch; font-size: 15px; line-height: 1.6; }
+.detail ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; max-width: 65ch; font-size: 14.5px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.stat { background: var(--card); padding: 14px 16px; border-left: 4px solid var(--accent, var(--ink)); }
+.stat b { display: block; font: 800 30px/1 var(--display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--ink-soft); }
+.sec-label { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
+.tools { display: flex; flex-wrap: wrap; gap: 6px; }
+.tool { border: 1px solid var(--ink); border-radius: 999px; padding: 4px 11px; font: 500 12px/1.3 var(--body); background: var(--card); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.note { font-size: 12.5px; color: var(--ink-soft); display: inline-flex; gap: 6px; align-items: center; }
+.note svg { width: 15px; height: 15px; }
+
+/* about + toolkit panels */
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.box { background: var(--card); padding: 16px; display: grid; gap: 4px; align-content: start; }
+.box h3 { margin: 0; font: 700 15px/1.3 var(--display); }
+.box .when { font: 500 11px/1.3 var(--mono); color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+.box p { font-size: 13.5px; }
+.lang-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* ---------- responsive ---------- */
+@media (min-width: 1000px) and (min-height: 700px) {
+  .page { height: 100%; }
+  .tiles { min-height: 0; }
+  .tile { min-height: 0; }
+}
+@media (max-width: 1000px) {
+  .bar { grid-template-columns: auto 1fr auto; }
+  .bar .hide-md { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .doodles { display: none; }
+  .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tile { min-height: 210px; }
+  .foot { grid-template-columns: 1fr 1fr; }
+  .foot .made { display: none; }
+}
+@media (max-width: 640px) {
+  .bar { grid-template-columns: 1fr auto; }
+  .bar .meta-cell { display: none; }
+  .logo { padding-right: 8px; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .tile { min-height: 190px; padding: 14px; }
+  .tile-desc { font-size: 12px; }
+  .t-toolkit { grid-column: span 2; min-height: 150px; }
+  .foot { grid-template-columns: 1fr; }
+  .foot > * + * { border-left: 0; border-top: 1px solid var(--rule); padding-left: 0; }
+  .panel-body { grid-template-columns: 1fr; grid-template-rows: auto 1fr; overflow-y: auto; }
+  .list { border-right: 0; border-bottom: 1px solid var(--rule); overflow: visible; flex-direction: row; overflow-x: auto; padding-block: 12px; }
+  .item { min-width: 220px; }
+  .detail { overflow: visible; }
+  .panel-letter { font-size: 42px; }
+  .panel-sub { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- header bar -->
+  <header class="bar wrap">
+    <a class="logo" href="#" aria-label="Natalie Sim, home">
+      <span class="logo-mark">NS</span>
+      <span class="logo-name">natalie sim<small>.DATA</small></span>
+    </a>
+    <div class="meta meta-cell">Data science<br>Machine learning · Analytics</div>
+    <div class="meta meta-cell hide-md">B.CS Data Science, UMS<br>Class of 2026</div>
+    <div class="meta meta-cell hide-md">Based in<br>Kuching, Malaysia</div>
+    <div class="cv-cell">
+      <a class="btn solid" href="assets/NatalieSim_CV2026.pdf" download="NatalieSim_CV2026.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+        Download CV
+      </a>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <section class="hero wrap">
+    <div>
+      <div class="tagrow">
+        <span class="tag">Project database</span>
+        <span class="status">Open to data roles</span>
+      </div>
+      <h1>Models, dashboards, graphs, experiments, and <em>well-cleaned</em> data.</h1>
+      <div class="hello">
+        <div class="hand" aria-hidden="true"><span>cleaning</span><span>modelling</span><span>shipping</span></div>
+        <p class="intro">Hi, I'm <b>Natalie</b>. I study data science at Universiti Malaysia Sabah and recently built Maxis's first customer-level churn model. Tap a tile to see what I've made.</p>
+      </div>
+    </div>
+
+    <div class="doodles" aria-hidden="true">
+      <!-- sparkle -->
+      <svg class="spin" style="left:46%;top:2%" width="34" height="34" viewBox="0 0 34 34"><g stroke="#F3C03E" stroke-width="3" stroke-linecap="round"><path d="M17 2v30M2 17h30M6 6l22 22M28 6L6 28"/></g></svg>
+      <!-- network graph -->
+      <svg class="float" style="left:4%;top:12%" width="130" height="100" viewBox="0 0 130 100">
+        <g stroke="#1C1B19" stroke-width="2" fill="none"><path d="M20 70L55 25L100 40L80 85L20 70M55 25L80 85M100 40L118 12"/></g>
+        <circle cx="20" cy="70" r="9" fill="#E25A2C" stroke="#1C1B19" stroke-width="2"/>
+        <circle cx="55" cy="25" r="11" fill="#3D85CC" stroke="#1C1B19" stroke-width="2"/>
+        <circle cx="100" cy="40" r="8" fill="#F3C03E" stroke="#1C1B19" stroke-width="2"/>
+        <circle cx="80" cy="85" r="9" fill="#3E9B57" stroke="#1C1B19" stroke-width="2"/>
+        <circle cx="118" cy="12" r="6" fill="#E78AAE" stroke="#1C1B19" stroke-width="2"/>
+      </svg>
+      <!-- cloud -->
+      <svg style="left:78%;top:4%" width="62" height="36" viewBox="0 0 62 36"><path d="M14 32h36a10 10 0 0 0 0-20 14 14 0 0 0-26-3A11 11 0 0 0 14 32z" fill="none" stroke="#1C1B19" stroke-width="2"/></svg>
+      <!-- bar chart card -->
+      <svg class="float d2" style="left:60%;top:24%" width="110" height="92" viewBox="0 0 110 92">
+        <rect x="2" y="2" width="106" height="88" rx="6" fill="#FBFAF7" stroke="#1C1B19" stroke-width="2"/>
+        <rect x="16" y="52" width="14" height="26" fill="#3D85CC" stroke="#1C1B19" stroke-width="2"/>
+        <rect x="38" y="36" width="14" height="42" fill="#F3C03E" stroke="#1C1B19" stroke-width="2"/>
+        <rect x="60" y="44" width="14" height="34" fill="#E78AAE" stroke="#1C1B19" stroke-width="2"/>
+        <rect x="82" y="16" width="14" height="62" fill="#E25A2C" stroke="#1C1B19" stroke-width="2"/>
+      </svg>
+      <!-- heart -->
+      <svg class="float d3" style="left:90%;top:38%" width="34" height="30" viewBox="0 0 34 30"><path d="M17 28S2 19 2 9a7.5 7.5 0 0 1 15-2 7.5 7.5 0 0 1 15 2c0 10-15 19-15 19z" fill="#E78AAE"/></svg>
+      <!-- tokki (rabbit) mug -->
+      <svg class="float d3" style="left:14%;top:62%" width="96" height="92" viewBox="0 0 96 92">
+        <path d="M30 8c-4 0-6 10-4 22M48 8c4 0 6 10 4 22" stroke="#1C1B19" stroke-width="2.5" fill="#FBFAF7" stroke-linecap="round"/>
+        <path d="M14 30h56v40a16 16 0 0 1-16 16H30a16 16 0 0 1-16-16z" fill="#F3C03E" stroke="#1C1B19" stroke-width="2.5"/>
+        <path d="M70 40h6a10 10 0 0 1 0 20h-6" fill="none" stroke="#1C1B19" stroke-width="2.5"/>
+        <circle cx="32" cy="52" r="3" fill="#1C1B19"/><circle cx="52" cy="52" r="3" fill="#1C1B19"/>
+        <path d="M38 60q4 4 8 0" stroke="#1C1B19" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="26" cy="60" r="3.5" fill="#E78AAE"/><circle cx="58" cy="60" r="3.5" fill="#E78AAE"/>
+      </svg>
+      <!-- database cylinder -->
+      <svg class="float" style="left:44%;top:60%" width="70" height="84" viewBox="0 0 70 84">
+        <path d="M4 14v56c0 6 14 11 31 11s31-5 31-11V14" fill="#3E9B57" stroke="#1C1B19" stroke-width="2.5"/>
+        <path d="M4 33c0 6 14 11 31 11s31-5 31-11M4 52c0 6 14 11 31 11s31-5 31-11" fill="none" stroke="#1C1B19" stroke-width="2.5"/>
+        <ellipse cx="35" cy="14" rx="31" ry="11" fill="#FBFAF7" stroke="#1C1B19" stroke-width="2.5"/>
+      </svg>
+      <!-- 13x lift sticker -->
+      <svg class="float d2" style="left:74%;top:66%" width="92" height="92" viewBox="0 0 92 92">
+        <circle cx="46" cy="46" r="42" fill="#1C1B19"/>
+        <text x="46" y="48" text-anchor="middle" fill="#F3C03E" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="28">13×</text>
+        <text x="46" y="66" text-anchor="middle" fill="#F1EEE7" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1">LIFT</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- tiles (filled by script) -->
+  <nav class="tiles wrap" id="tiles" aria-label="Sections"></nav>
+
+  <!-- footer strip -->
+  <footer class="foot wrap">
+    <div class="reminder">
+      <div>
+        <span class="meta">Reminder</span>
+        <strong lang="ko">모델은 쉽고, 데이터는 어렵다.</strong>
+        <span class="tr">Models are easy. Data is hard.</span>
+      </div>
+    </div>
+    <div class="contact">
+      <a href="https://github.com/natliesim" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>
+        github.com/natliesim
+      </a>
+      <button class="copy-mail" id="copyMail" type="button" title="Copy email address">nataliessim@gmail.com</button>
+    </div>
+    <div class="made">
+      <span class="meta">Kuching · Kota Kinabalu · Kuala Lumpur</span>
+      <span class="meta">© 2026 Natalie Sim En Xi</span>
+    </div>
+  </footer>
+</div>
+
+<!-- panel -->
+<div class="panel" id="panel" hidden role="dialog" aria-modal="true" aria-labelledby="panelTitle">
+  <div class="panel-head wrap">
+    <span class="panel-letter" id="panelLetter"></span>
+    <div>
+      <div class="panel-title" id="panelTitle"></div>
+      <div class="panel-sub" id="panelSub"></div>
+    </div>
+    <span class="spacer"></span>
+    <button class="close" id="closePanel" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+  </div>
+  <div class="panel-body" id="panelBody"></div>
+</div>
+
+<script>
+/* ============================================================
+   EDIT YOUR CONTENT HERE.
+   Each project: title, kicker (short label), line (one-liner),
+   when, where, summary, points[], stats[], tools[], github, note
+   github: a full URL, or null to show the "note" instead.
+   ============================================================ */
+const GITHUB = "https://github.com/natliesim";
+
+const SECTIONS = {
+  work: {
+    letter: "W", name: "Work", color: "var(--orange)",
+    desc: "Industry projects from my internship in Maxis's Data & AI team.",
+    sub: "Data Analyst Intern · Maxis Broadband · Mar–Aug 2026",
+    projects: [
+      {
+        id: "churn",
+        title: "Customer Churn Prediction Model",
+        kicker: "Maxis · Applied Analytics",
+        line: "The team's first customer-level churn model.",
+        when: "Mar – Aug 2026", where: "Menara Maxis, Kuala Lumpur",
+        summary: "Built the Applied Analytics team's first customer-level model for predicting which broadband customers are likely to churn, so retention campaigns can focus on the people most at risk.",
+        points: [
+          "Built customer-level features with SQL on BigQuery.",
+          "Trained and tuned an XGBoost classifier in Python.",
+          "Ranked customers by risk so the business can target the top deciles first.",
+        ],
+        stats: [
+          { v: "13×", l: "lift in the top 1% of scored customers" },
+          { v: "50.7%", l: "of churners caught in the highest-risk decile" },
+        ],
+        tools: ["Python", "SQL", "XGBoost", "BigQuery", "Vertex AI", "Google Cloud Platform", "pandas", "scikit-learn"],
+        github: null,
+        note: "Code and data belong to Maxis, so there is no public repository.",
+      },
+      {
+        id: "monitoring",
+        title: "Model Monitoring Dashboard",
+        kicker: "Maxis · MLOps",
+        line: "Post-deployment monitoring in Power BI.",
+        when: "2026", where: "Maxis, Kuala Lumpur",
+        summary: "Improved a Power BI monitoring solution connected to production data pipelines, so the team can track deployed models after release.",
+        points: [
+          "Updated monitoring scripts and performance checks.",
+          "Rebuilt dashboard views for post-deployment model health.",
+        ],
+        stats: [],
+        tools: ["Power BI", "SQL", "Python", "BigQuery"],
+        github: null,
+        note: "Internal company work, so there is no public repository.",
+      },
+      {
+        id: "gcp",
+        title: "GCP Cost Audit",
+        kicker: "Maxis · Cloud",
+        line: "A 25% cut in estimated monthly cloud spend.",
+        when: "2026", where: "Maxis, Kuala Lumpur",
+        summary: "Audited the team's Google Cloud resources (tables, notebooks, API keys and configurations) and cleaned up what wasn't needed. I also prototyped BigQuery Graph Analytics for future use cases.",
+        points: [
+          "Reviewed BigQuery tables, Vertex AI notebooks, API keys and configs.",
+          "Prototyped graph-based representations of complex data relationships with BigQuery Graph.",
+        ],
+        stats: [{ v: "−25%", l: "estimated monthly cloud spend" }],
+        tools: ["Google Cloud Platform", "BigQuery", "BigQuery Graph", "Vertex AI"],
+        github: null,
+        note: "Internal company work, so there is no public repository.",
+      },
+    ],
+  },
+
+  school: {
+    letter: "S", name: "School", color: "var(--blue)",
+    desc: "My final year project and national data competitions.",
+    sub: "B.CS Data Science · Universiti Malaysia Sabah · CGPA 3.85",
+    projects: [
+      {
+        id: "fyp",
+        title: "Swarm Intelligence-Optimized GNNs for Drug Repurposing",
+        kicker: "Final Year Project",
+        line: "A bio-inspired, adaptive approach to tuning graph neural networks.",
+        when: "2025 – 2026", where: "Universiti Malaysia Sabah",
+        summary: "Drug repurposing looks for new uses for existing drugs. I framed it as link prediction on a biomedical knowledge graph and used swarm intelligence to tune a Relational Graph Convolutional Network (RGCN).",
+        points: [
+          "Built an RGCN to predict drug–disease links on a biomedical knowledge graph.",
+          "Implemented Particle Swarm Optimization (PSO) and Ant Colony Optimization (ACO) to search the model's hyperparameters.",
+          "Compared the swarm-tuned models against a baseline to evaluate the gain.",
+        ],
+        stats: [],
+        tools: ["Python", "PyTorch", "PyTorch Geometric", "RGCN", "PSO", "ACO", "Knowledge graphs"],
+        github: GITHUB,
+      },
+      {
+        id: "banana",
+        title: "Banana Ripeness Classifier",
+        kicker: "Sustainable Food Nexus Data Challenge",
+        line: "Top 10 national finalist · CNN image classifier.",
+        when: "Aug 2023", where: "Johor Bahru, Johor",
+        summary: "With my team, I built a Convolutional Neural Network that classifies bananas by ripening stage from photos, aimed at reducing food waste along the supply chain.",
+        points: [
+          "Prepared and augmented an image dataset of banana ripening stages.",
+          "Trained a CNN classifier and evaluated it per class.",
+        ],
+        stats: [{ v: "Top 10", l: "national finalist" }],
+        tools: ["Python", "TensorFlow / Keras", "CNN", "Image augmentation"],
+        github: GITHUB,
+      },
+      {
+        id: "cpi",
+        title: "Medical Tourism & Health CPI",
+        kicker: "Malaysia Techlympics 2023",
+        line: "Top 10 national finalist · data visualisation.",
+        when: "Dec 2023", where: "Putrajaya",
+        summary: "A team data visualisation that used Malaysia's Health Consumer Price Index to explore the country's medical tourism story.",
+        points: [
+          "Cleaned and combined public Health CPI data.",
+          "Designed charts to compare healthcare price trends over time.",
+        ],
+        stats: [{ v: "Top 10", l: "national finalist" }],
+        tools: ["Python", "Power BI", "Data visualisation"],
+        github: GITHUB,
+      },
+    ],
+  },
+
+  personal: {
+    letter: "P", name: "Personal", color: "var(--pink)",
+    desc: "Side projects, freelance sites and things I built for fun.",
+    sub: "Built outside class and work",
+    projects: [
+      {
+        id: "tokki",
+        title: "Tokki Dokki",
+        kicker: "Personal project",
+        line: "토끼 (tokki) means rabbit in Korean.",
+        when: "2025", where: "Personal",
+        summary: "Tokki Dokki is a personal side project. A full write-up is coming soon.",
+        points: [],
+        stats: [],
+        tools: ["HTML", "CSS", "JavaScript"],
+        github: GITHUB,
+      },
+      {
+        id: "etal",
+        title: "Website for Etal",
+        kicker: "Freelance web build",
+        line: "A business website built to the client's brief.",
+        when: "2025", where: "Freelance",
+        summary: "A website I built for Etal as a freelance project, designed around the client's requirements.",
+        points: [
+          "Gathered requirements with the client and planned the site structure.",
+          "Designed and built the pages, then handed them over for launch.",
+        ],
+        stats: [],
+        tools: ["HTML", "CSS", "JavaScript"],
+        github: GITHUB,
+      },
+      {
+        id: "predictive",
+        title: "Predictive Analysis",
+        kicker: "Personal ML project",
+        line: "End-to-end predictive modelling on a public dataset.",
+        when: "2025", where: "Personal",
+        summary: "A self-directed project covering the full predictive modelling workflow: cleaning, exploratory analysis, feature engineering, model comparison and evaluation.",
+        points: [
+          "Explored and cleaned the data, then engineered features.",
+          "Compared several models and evaluated them on held-out data.",
+        ],
+        stats: [],
+        tools: ["Python", "pandas", "scikit-learn", "Jupyter"],
+        github: GITHUB,
+      },
+    ],
+  },
+};
+
+const ICONS = {
+  work: `<svg viewBox="0 0 120 110" aria-hidden="true"><rect x="16" y="14" width="88" height="60" rx="5" fill="#FBFAF7" stroke="#1C1B19" stroke-width="3"/><path d="M28 60l18-18 14 10 24-26" fill="none" stroke="#E25A2C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="84" cy="26" r="5" fill="#F3C03E" stroke="#1C1B19" stroke-width="2.5"/><path d="M6 80h108l-8 14H14z" fill="#1C1B19"/></svg>`,
+  school: `<svg viewBox="0 0 120 110" aria-hidden="true"><path d="M60 14L6 40l54 26 54-26z" fill="#1C1B19"/><path d="M28 52v26c0 8 14 16 32 16s32-8 32-16V52L60 68z" fill="#FBFAF7" stroke="#1C1B19" stroke-width="3" stroke-linejoin="round"/><path d="M104 44v30" stroke="#1C1B19" stroke-width="3"/><circle cx="104" cy="78" r="6" fill="#F3C03E" stroke="#1C1B19" stroke-width="2.5"/></svg>`,
+  personal: `<svg viewBox="0 0 120 110" aria-hidden="true"><path d="M44 50C34 30 34 6 44 6s14 26 10 44M76 50c10-20 10-44 0-44s-14 26-10 44" fill="#FBFAF7" stroke="#1C1B19" stroke-width="3"/><path d="M42 18c-2 8 0 20 4 28M78 18c2 8 0 20-4 28" stroke="#E78AAE" stroke-width="4" stroke-linecap="round"/><ellipse cx="60" cy="72" rx="36" ry="30" fill="#FBFAF7" stroke="#1C1B19" stroke-width="3"/><circle cx="47" cy="68" r="4" fill="#1C1B19"/><circle cx="73" cy="68" r="4" fill="#1C1B19"/><path d="M55 78q5 5 10 0" stroke="#1C1B19" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="38" cy="80" r="5" fill="#E78AAE"/><circle cx="82" cy="80" r="5" fill="#E78AAE"/></svg>`,
+  about: `<svg viewBox="0 0 120 110" aria-hidden="true"><rect x="22" y="12" width="76" height="92" rx="6" fill="#FBFAF7" stroke="#1C1B19" stroke-width="3"/><rect x="48" y="6" width="24" height="12" rx="3" fill="#1C1B19"/><circle cx="60" cy="44" r="14" fill="#E78AAE" stroke="#1C1B19" stroke-width="3"/><path d="M38 80c4-12 40-12 44 0" fill="none" stroke="#1C1B19" stroke-width="3" stroke-linecap="round"/><path d="M36 92h48" stroke="#1C1B19" stroke-width="3" stroke-linecap="round"/><path d="M90 20l4 8 8 1-6 6 2 8-8-4-8 4 2-8-6-6 8-1z" fill="#E25A2C" stroke="#1C1B19" stroke-width="2"/></svg>`,
+  toolkit: `<svg viewBox="0 0 120 110" aria-hidden="true"><path d="M46 8h28M50 8v30L20 92a8 8 0 0 0 7 12h66a8 8 0 0 0 7-12L70 38V8" fill="#FBFAF7" stroke="#1C1B19" stroke-width="3" stroke-linejoin="round"/><path d="M32 72h56l12 22a5 5 0 0 1-4 8H24a5 5 0 0 1-4-8z" fill="#3E9B57"/><circle cx="52" cy="86" r="4" fill="#FBFAF7"/><circle cx="68" cy="80" r="3" fill="#FBFAF7"/><circle cx="62" cy="58" r="3" fill="#3E9B57"/></svg>`,
+};
+
+const ARROW = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>`;
+const GH = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>`;
+const LOCK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>`;
+
+const TILES = [
+  { key: "work",     cls: "t-work",     letter: "W", name: "Work",     desc: SECTIONS.work.desc,     foot: `${SECTIONS.work.projects.length} projects` },
+  { key: "school",   cls: "t-school",   letter: "S", name: "School",   desc: SECTIONS.school.desc,   foot: `${SECTIONS.school.projects.length} projects` },
+  { key: "personal", cls: "t-personal", letter: "P", name: "Personal", desc: SECTIONS.personal.desc, foot: `${SECTIONS.personal.projects.length} projects` },
+  { key: "about",    cls: "t-about",    letter: "A", name: "About",    desc: "Education, awards, and a bit about me.", foot: "Dean's List" },
+  { key: "toolkit",  cls: "t-toolkit",  letter: "T", name: "Toolkit",  desc: "The languages, platforms and tools I use.", foot: "Python · SQL · R" },
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+document.getElementById("tiles").innerHTML = TILES.map(t => `
+  <button class="tile ${t.cls}" type="button" data-open="${t.key}" aria-label="Open ${t.name}">
+    <span class="tile-head"><span class="tile-letter">${t.letter}</span><span class="tile-name">${t.name}</span></span>
+    <span class="tile-desc">${esc(t.desc)}</span>
+    <span class="tile-art">${ICONS[t.key]}</span>
+    <span class="tile-foot">${ARROW}<span>${esc(t.foot)}</span></span>
+  </button>`).join("");
+
+const panel = document.getElementById("panel");
+const body = document.getElementById("panelBody");
+
+function projectDetail(p) {
+  const stats = p.stats.length ? `<div class="stats">${p.stats.map(s => `<div class="stat"><b>${esc(s.v)}</b><span>${esc(s.l)}</span></div>`).join("")}</div>` : "";
+  const points = p.points.length ? `<div><div class="sec-label">What I did</div><ul>${p.points.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : "";
+  const link = p.github
+    ? `<a class="btn solid" href="${esc(p.github)}" target="_blank" rel="noopener">${GH}<span>View on GitHub</span></a>`
+    : `<span class="note">${LOCK}${esc(p.note || "No public repository.")}</span>`;
+  return `<div class="detail-inner">
+    <div>
+      <span class="chip-label">${esc(p.kicker)}</span>
+      <h2>${esc(p.title)}</h2>
+      <div class="where">${esc(p.when)} · ${esc(p.where)}</div>
+    </div>
+    <p>${esc(p.summary)}</p>
+    ${stats}
+    ${points}
+    <div><div class="sec-label">Tools used</div><div class="tools">${p.tools.map(t => `<span class="tool">${esc(t)}</span>`).join("")}</div></div>
+    <div class="actions">${link}</div>
+  </div>`;
+}
+
+function renderProjects(key, pid) {
+  const s = SECTIONS[key];
+  const current = s.projects.find(p => p.id === pid) || s.projects[0];
+  body.innerHTML = `
+    <div class="list wrap" role="list">
+      ${s.projects.map(p => `
+        <button class="item" type="button" role="listitem" data-pid="${p.id}" aria-current="${p.id === current.id}">
+          <span class="item-kicker">${esc(p.kicker)}</span>
+          <span class="item-title">${esc(p.title)}</span>
+          <span class="item-line">${esc(p.line)}</span>
+        </button>`).join("")}
+    </div>
+    <div class="detail wrap" id="detail">${projectDetail(current)}</div>`;
+  body.querySelectorAll("[data-pid]").forEach(b => b.addEventListener("click", () => {
+    body.querySelectorAll("[data-pid]").forEach(x => x.setAttribute("aria-current", x === b));
+    const d = document.getElementById("detail");
+    d.innerHTML = projectDetail(s.projects.find(p => p.id === b.dataset.pid));
+    d.scrollTop = 0;
+    if (window.matchMedia("(max-width: 640px)").matches) d.scrollIntoView({ behavior: "smooth", block: "start" });
+  }));
+}
+
+function renderAbout() {
+  body.innerHTML = `<div class="detail wrap" style="grid-column:1/-1"><div class="detail-inner" style="max-width:980px">
+    <div>
+      <span class="chip-label">Natalie Sim En Xi</span>
+      <h2>Data science student who likes turning messy data into decisions.</h2>
+      <div class="where">Kuching, Sarawak, Malaysia</div>
+    </div>
+    <p>I'm finishing a Bachelor of Computer Science in Data Science at Universiti Malaysia Sabah. I've worked on churn modelling and cloud analytics at Maxis, studied a semester abroad in Indonesia, and I'm happiest somewhere between SQL, a notebook and a good chart.</p>
+    <div class="stats">
+      <div class="stat"><b>3.85</b><span>CGPA out of 4.00</span></div>
+      <div class="stat"><b>Every sem</b><span>Dean's List, UMS</span></div>
+      <div class="stat"><b>1 of 21</b><span>Maxis Women in Tech scholars, 2022</span></div>
+    </div>
+    <div>
+      <div class="sec-label">Education</div>
+      <div class="grid2">
+        <div class="box"><span class="when">Oct 2022 – Nov 2026</span><h3>Universiti Malaysia Sabah</h3><p>Bachelor of Computer Science, Data Science. CGPA 3.85.</p></div>
+        <div class="box"><span class="when">Sep – Dec 2025</span><h3>Universitas Diponegoro</h3><p>Semester abroad, Informatika (DEEP exchange), Semarang, Indonesia.</p></div>
+        <div class="box"><span class="when">2022</span><h3>St. Thomas' Secondary School</h3><p>STPM, Science &amp; Mathematics. CGPA 3.59.</p></div>
+        <div class="box"><span class="when">2020</span><h3>Kuching High School</h3><p>SPM, Science stream. 9As.</p></div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-label">Also</div>
+      <div class="grid2">
+        <div class="box"><span class="when">Feb – Aug 2023</span><h3>AIESEC in UMS</h3><p>Organising committee, Project Nature Warrior 10.0 (SDG 14, Life Below Water).</p></div>
+        <div class="box"><span class="when">Semester breaks</span><h3>English tutor</h3><p>Personalised lessons for students from China and Taiwan.</p></div>
+        <div class="box"><span class="when">Ongoing</span><h3>Freelance website builder</h3><p>Websites for small businesses, built to each client's brief.</p></div>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn solid" href="assets/NatalieSim_CV2026.pdf" download="NatalieSim_CV2026.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download CV</a>
+      <a class="btn" href="${GITHUB}" target="_blank" rel="noopener">${GH}<span>GitHub</span></a>
+    </div>
+  </div></div>`;
+}
+
+function renderToolkit() {
+  const groups = [
+    ["Programming", ["Python", "R", "SQL"]],
+    ["Machine learning", ["XGBoost", "scikit-learn", "PyTorch", "PyTorch Geometric", "TensorFlow / Keras", "Graph neural networks", "Swarm optimisation (PSO, ACO)"]],
+    ["Data & analytics", ["pandas", "Microsoft Excel", "Power BI", "Jupyter"]],
+    ["Cloud & data platforms", ["Google Cloud Platform", "BigQuery", "BigQuery Graph", "Vertex AI"]],
+    ["Dev & version control", ["Git", "GitLab", "GitHub", "HTML / CSS / JavaScript"]],
+    ["Languages I speak", ["English", "Mandarin", "Malay", "Korean"]],
+  ];
+  body.innerHTML = `<div class="detail wrap" style="grid-column:1/-1"><div class="detail-inner" style="max-width:980px">
+    <div><span class="chip-label">Toolkit</span><h2>What I work with</h2></div>
+    <div class="grid2">${groups.map(([g, items]) => `<div class="box"><h3>${g}</h3><div class="tools" style="margin-top:8px">${items.map(i => `<span class="tool">${esc(i)}</span>`).join("")}</div></div>`).join("")}</div>
+    <div><div class="sec-label">Relevant coursework</div><p>Machine Learning for Data Science, Statistics and Data Analysis, Data Mining and Warehousing, Data Visualization, Databases, Big Data, Artificial Intelligence, Natural Language Processing.</p></div>
+  </div></div>`;
+}
+
+const META = {
+  work: SECTIONS.work, school: SECTIONS.school, personal: SECTIONS.personal,
+  about: { letter: "A", name: "About", color: "var(--yellow)", sub: "Education, awards and experience" },
+  toolkit: { letter: "T", name: "Toolkit", color: "var(--stone)", sub: "Languages, platforms and tools" },
+};
+
+let lastTrigger = null;
+function openPanel(key) {
+  const m = META[key];
+  if (!m) return;
+  panel.style.setProperty("--accent", m.color);
+  document.getElementById("panelLetter").textContent = m.letter;
+  document.getElementById("panelTitle").textContent = m.name;
+  document.getElementById("panelSub").textContent = m.sub;
+  if (key === "about") renderAbout();
+  else if (key === "toolkit") renderToolkit();
+  else renderProjects(key);
+  panel.hidden = false;
+  document.body.style.overflow = "hidden";
+  document.getElementById("closePanel").focus();
+  if (location.hash !== "#" + key) history.replaceState(null, "", "#" + key);
+}
+function closePanel() {
+  panel.hidden = true;
+  document.body.style.overflow = "";
+  history.replaceState(null, "", location.pathname + location.search);
+  if (lastTrigger) lastTrigger.focus();
+}
+
+document.querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => { lastTrigger = b; openPanel(b.dataset.open); }));
+document.getElementById("closePanel").addEventListener("click", closePanel);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !panel.hidden) closePanel(); });
+window.addEventListener("hashchange", () => { const k = location.hash.slice(1); if (META[k]) openPanel(k); });
+if (META[location.hash.slice(1)]) openPanel(location.hash.slice(1));
+
+document.getElementById("copyMail").addEventListener("click", e => {
+  const btn = e.currentTarget, text = "nataliessim@gmail.com";
+  const done = () => { btn.textContent = "Copied"; setTimeout(() => (btn.textContent = text), 1400); };
+  try {
+    navigator.clipboard.writeText(text).then(done, () => selectText(btn));
+  } catch (_) { selectText(btn); }
+});
+function selectText(el) { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+</script>
+</body>
+</html>
