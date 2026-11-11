@@ -300,7 +300,7 @@ h1 em { font-style: italic; font-weight: 800; }
     <div class="meta meta-cell hide-md">B.CS Data Science, UMS<br>Class of 2026</div>
     <div class="meta meta-cell hide-md">Based in<br>Kuching, Malaysia</div>
     <div class="cv-cell">
-      <a class="btn solid" href="assets/NatalieSim_CV2026.pdf" download="NatalieSim_CV2026.pdf" target="_blank" rel="noopener">
+      <a class="btn solid cv-link" href="assets/NatalieSim_CV2026.pdf" download="NatalieSim_CV2026.pdf" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
         Download CV
       </a>
@@ -692,7 +692,7 @@ function renderAbout() {
       </div>
     </div>
     <div class="actions">
-      <a class="btn solid" href="assets/NatalieSim_CV2026.pdf" download="NatalieSim_CV2026.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download CV</a>
+      <a class="btn solid cv-link" href="assets/NatalieSim_CV2026.pdf" download="NatalieSim_CV2026.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download CV</a>
       <a class="btn" href="${GITHUB}" target="_blank" rel="noopener">${GH}<span>GitHub</span></a>
     </div>
   </div></div>`;
@@ -757,6 +757,19 @@ document.getElementById("copyMail").addEventListener("click", e => {
   } catch (_) { selectText(btn); }
 });
 function selectText(el) { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+
+/* CV download: inside the Claude artifact viewer, use its save prompt; everywhere else the plain link works. */
+let saver = null;
+if (window.claude && window.claude.use) window.claude.use("downloads").then(d => { saver = d; }).catch(() => {});
+document.addEventListener("click", async e => {
+  const a = e.target.closest(".cv-link");
+  if (!a || !saver) return;
+  e.preventDefault();
+  try {
+    const blob = await (await fetch(a.getAttribute("href"))).blob();
+    await saver.save({ filename: "NatalieSim_CV2026.pdf", data: blob });
+  } catch (err) { /* viewer declined or saving is unavailable */ }
+});
 </script>
 </body>
 </html>
