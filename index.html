@@ -646,7 +646,6 @@ const SECTIONS = {
         line: "A bio-inspired, adaptive approach to optimising graph neural networks.",
         when: "2025 – 2026", where: "Universiti Malaysia Sabah",
         summary: "Drug repurposing seeks new therapeutic uses for approved drugs, sparing years of development. Working with biomedical knowledge graph data from Harvard Dataverse, I framed the problem as link prediction and applied swarm intelligence to optimise a Relational Graph Convolutional Network (RGCN).",
-        cover: { src: "assets/school/harvard-dataverse.png", alt: "Harvard Dataverse logo", fit: "logo", caption: "Data source: Harvard Dataverse" },
         points: [
           "Sourced biomedical knowledge graph data from Harvard Dataverse, an open research data repository.",
           "Built an RGCN to predict drug–disease associations across the heterogeneous knowledge graph.",
@@ -654,7 +653,10 @@ const SECTIONS = {
           "Benchmarked the swarm-optimised configurations against a baseline model.",
         ],
         stats: [],
-        tools: ["Python", "PyTorch", "PyTorch Geometric", "Harvard Dataverse", "RGCN", "PSO", "ACO", "Knowledge graphs"],
+        sources: [
+          { name: "Harvard Dataverse", logo: "assets/school/harvard-dataverse.png", desc: "Open research data repository that provided the biomedical knowledge graph data used to train and evaluate the model." },
+        ],
+        tools: ["Python", "PyTorch", "PyTorch Geometric", "RGCN", "PSO", "ACO", "Knowledge graphs"],
         github: null,
         note: "Links and code coming soon.",
         soon: true,
@@ -776,7 +778,7 @@ const SECTIONS = {
           { name: "Yahoo Finance", desc: "About 20 years of daily futures prices for gold, silver, crude oil, copper, platinum and natural gas, plus market indicators such as the S&P 500." },
           { name: "FRED", full: "Federal Reserve Economic Data, St. Louis Fed", desc: "Macroeconomic factors: the trade-weighted US dollar index, real interest rates, inflation expectations, the Treasury yield curve and the St. Louis Fed Financial Stress Index." },
         ],
-        tools: ["Python", "Yahoo Finance", "FRED", "Logistic regression", "Gradient-boosted trees", "Walk-forward testing", "JavaScript"],
+        tools: ["Python", "JavaScript", "Logistic regression", "Gradient-boosted trees", "Walk-forward testing"],
         images: [
           { src: "assets/personal/forecast-home.jpg", alt: "Forecast overview: cards for gold, silver, crude oil, copper, platinum and natural gas, each with a price chart, a bullish or bearish label and an accuracy score" },
           { src: "assets/personal/forecast-gold.jpg", alt: "Gold detail page explaining how financial stress relates to the gold price, beside a forecast chart and the chance of a higher price in 3, 6 and 12 months" },
@@ -859,7 +861,7 @@ function projectDetail(p) {
     ${sources}
     ${gallery}
     ${points}
-    <div><div class="sec-label">Tools used</div><div class="tools">${p.tools.map(toolChip).join("")}</div></div>
+    <div><div class="sec-label">Tools and methods</div><div class="tools">${p.tools.map(toolChip).join("")}</div></div>
     ${live || link ? `<div class="actions">${live}${link}</div>` : ""}
   </div>`;
 }
@@ -929,18 +931,20 @@ function renderAbout() {
 
 function renderToolkit() {
   const groups = [
-    ["Programming", ["Python", "R", "SQL", "GQL (Google)"]],
-    ["Machine learning", ["XGBoost", "scikit-learn", "PyTorch", "PyTorch Geometric", "TensorFlow / Keras", "Graph neural networks", "Swarm optimisation (PSO, ACO)"]],
-    ["Data & analytics", ["pandas", "Microsoft Excel", "Power BI", "Jupyter"]],
-    ["Cloud, big data & graph", ["Google Cloud Platform", "BigQuery", "BigQuery Graph", "Vertex AI", "Hadoop", "Neo4j"]],
-    ["Dev & version control", ["Git", "GitLab", "GitHub", "HTML", "CSS", "JavaScript", "Wix Headless"]],
+    ["Programming & query", ["Python", "R", "SQL", "JavaScript"]],
+    ["Machine learning", ["scikit-learn", "XGBoost", "PyTorch", "PyTorch Geometric", "TensorFlow / Keras", "Graph neural networks", "Swarm optimisation (PSO, ACO)"]],
+    ["Data analysis & visualisation", ["pandas", "Jupyter", "Microsoft Excel", "Power BI"]],
+    ["Cloud & big data", ["Google Cloud Platform", "BigQuery", "Vertex AI", "Hadoop"]],
+    ["Graph databases & analytics", ["Neo4j", "BigQuery Graph", "GQL (Google)"]],
+    ["Web development & version control", ["HTML", "CSS", "Wix Headless", "Git", "GitHub", "GitLab"]],
     ["Design & productivity", ["Figma", "Microsoft Word", "Google Docs", "Google Sheets", "Google Slides"]],
     ["Methodologies", ["SDLC", "Agile", "Waterfall"]],
-    ["Languages I speak", ["English (IELTS 7.5, C1)", "Mandarin", "Malay", "Korean"]],
   ];
+  const spoken = ["English (IELTS 7.5, C1)", "Mandarin", "Malay", "Korean"];
   body.innerHTML = `<div class="detail wrap" style="grid-column:1/-1"><div class="detail-inner" style="max-width:980px">
     <div><span class="chip-label">Toolkit</span><h2>Tools and methods</h2></div>
     <div class="grid2" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">${groups.map(([g, items]) => `<div class="box"><h3>${g}</h3><div class="tools" style="margin-top:8px">${items.map(toolChip).join("")}</div></div>`).join("")}</div>
+    <div><div class="sec-label">Languages I speak</div><div class="tools">${spoken.map(toolChip).join("")}</div></div>
     <div><div class="sec-label">Relevant coursework</div><p>Machine Learning for Data Science, Statistics and Data Analysis, Data Mining and Warehousing, Data Visualization, Databases, Big Data, Artificial Intelligence, Natural Language Processing.</p></div>
   </div></div>`;
 }
