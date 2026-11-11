@@ -940,12 +940,19 @@ function renderToolkit() {
     ["Design & productivity", ["Figma", "Microsoft Word", "Google Docs", "Google Sheets", "Google Slides"]],
     ["Methodologies", ["SDLC", "Agile", "Waterfall"]],
   ];
+  const coursework = [
+    ["Data science & AI", ["Machine Learning for Data Science", "Artificial Intelligence", "Natural Language Processing", "Text Mining", "Information Retrieval", "Statistics and Data Analysis", "Data Mining and Warehousing", "Big Data Analytics", "Data Visualisation"]],
+    ["Software & systems", ["Systems Analysis and Design for Data Science", "Software Engineering", "Data Structures and Algorithms", "Databases", "Mobile Application Development", "Human-Computer Interaction", "Distributed Systems", "Internet of Things"]],
+  ];
   const spoken = ["English (IELTS 7.5, C1)", "Mandarin", "Malay", "Korean"];
   body.innerHTML = `<div class="detail wrap" style="grid-column:1/-1"><div class="detail-inner" style="max-width:980px">
     <div><span class="chip-label">Toolkit</span><h2>Tools and methods</h2></div>
     <div class="grid2" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">${groups.map(([g, items]) => `<div class="box"><h3>${g}</h3><div class="tools" style="margin-top:8px">${items.map(toolChip).join("")}</div></div>`).join("")}</div>
     <div><div class="sec-label">Languages I speak</div><div class="tools">${spoken.map(toolChip).join("")}</div></div>
-    <div><div class="sec-label">Relevant coursework</div><p>Machine Learning for Data Science, Statistics and Data Analysis, Data Mining and Warehousing, Data Visualization, Databases, Big Data, Artificial Intelligence, Natural Language Processing.</p></div>
+    <div>
+      <div class="sec-label">Relevant coursework</div>
+      <div class="grid2" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">${coursework.map(([g, items]) => `<div class="box"><h3>${g}</h3><div class="tools" style="margin-top:8px">${items.map(i => `<span class="tool">${esc(i)}</span>`).join("")}</div></div>`).join("")}</div>
+    </div>
   </div></div>`;
 }
 
