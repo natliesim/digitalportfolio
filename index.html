@@ -318,6 +318,10 @@ h1 em { font-style: italic; font-weight: 400; }
 .note svg { width: 15px; height: 15px; }
 
 /* about + toolkit panels */
+.about-head { display: flex; gap: 22px; align-items: center; }
+.about-head > div { min-width: 0; }
+.about-photo { width: 112px; height: 112px; flex: none; border-radius: 50%; object-fit: cover; border: 1px solid var(--rule); background: var(--card); }
+@media (max-width: 640px) { .about-head { flex-direction: column; align-items: flex-start; gap: 14px; } .about-photo { width: 84px; height: 84px; } }
 .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
 .box { background: var(--card); padding: 16px; display: grid; gap: 4px; align-content: start; }
 .box h3 { margin: 0; font: 400 21px/1.15 var(--display); }
@@ -883,10 +887,13 @@ function renderProjects(key, pid) {
 
 function renderAbout() {
   body.innerHTML = `<div class="detail wrap" style="grid-column:1/-1"><div class="detail-inner" style="max-width:980px">
-    <div>
-      <span class="chip-label">Natalie Sim En Xi</span>
-      <h2>I enjoy designing as much as building, and I use data to solve problems that matter.</h2>
-      <div class="where">Kuching, Sarawak, Malaysia</div>
+    <div class="about-head">
+      <img class="about-photo" src="assets/about/natalie.jpg" alt="Portrait of Natalie Sim" width="112" height="112">
+      <div>
+        <span class="chip-label">Natalie Sim En Xi</span>
+        <h2>I enjoy designing as much as building, and I use data to solve problems that matter.</h2>
+        <div class="where">Kuching, Sarawak, Malaysia</div>
+      </div>
     </div>
     <p>I'm a computer science graduate of Universiti Malaysia Sabah who loves the whole journey of making something: shaping the idea, designing how it looks and feels, and building it until it works. Whether it's a predictive model, a client website or a small game, I care about craft and about the people who will use it.</p>
     <p>What drives me is creating data-driven solutions that make a real difference, for businesses, communities and the world around us. Along the way I've built a churn prediction model and researched graph analytics at Maxis, studied a semester abroad in Indonesia, and designed and developed websites for small businesses.</p>
@@ -894,6 +901,7 @@ function renderAbout() {
       <div class="stat"><b>3.85</b><span>CGPA out of 4.00</span></div>
       <div class="stat"><b>Every sem</b><span>Dean's List, UMS</span></div>
       <div class="stat"><b>1 of 21</b><span>Maxis Women in Tech scholars, 2022</span></div>
+      <div class="stat"><b>7.5</b><span>IELTS band score, CEFR C1 English</span></div>
     </div>
     <div>
       <div class="sec-label">Education</div>
@@ -926,7 +934,7 @@ function renderToolkit() {
     ["Data & analytics", ["pandas", "Microsoft Excel", "Power BI", "Jupyter"]],
     ["Cloud & data platforms", ["Google Cloud Platform", "BigQuery", "BigQuery Graph", "Vertex AI"]],
     ["Dev & version control", ["Git", "GitLab", "GitHub", "HTML", "CSS", "JavaScript", "Wix Headless"]],
-    ["Languages I speak", ["English", "Mandarin", "Malay", "Korean"]],
+    ["Languages I speak", ["English (IELTS 7.5, C1)", "Mandarin", "Malay", "Korean"]],
   ];
   body.innerHTML = `<div class="detail wrap" style="grid-column:1/-1"><div class="detail-inner" style="max-width:980px">
     <div><span class="chip-label">Toolkit</span><h2>Tools and methods</h2></div>
