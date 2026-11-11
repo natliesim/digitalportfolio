@@ -8,16 +8,16 @@
 <meta name="description" content="Natalie Sim: data science student and analyst. Work, school and personal projects.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,700;0,800;1,700;1,800&family=Caveat:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Caveat:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-/* Layout: one screen. Grid header bar, hero with doodles, a row of five lettered tiles, footer strip. Tiles open full panels. */
+/* Layout: centred vertical column with empty sides. Grid header bar, hero with doodles, a row of five lettered tiles, footer strip. Tiles open full panels. */
 :root {
-  --paper: #F1EEE7;
-  --paper-2: #E8E4DB;
+  --paper: #FAF8F4;
+  --paper-2: #F1EEE8;
   --ink: #1C1B19;
   --ink-soft: #57534C;
-  --rule: #CFC9BE;
-  --card: #FBFAF7;
+  --rule: #E2DDD4;
+  --card: #FFFFFF;
   --pink: #E78AAE;
   --yellow: #F3C03E;
   --orange: #E25A2C;
@@ -46,9 +46,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 .page {
   min-height: 100%;
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  max-width: 1080px;
+  margin-inline: auto;
+  border-left: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
 }
+.page > .foot { margin-top: auto; }
 .wrap {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
@@ -68,14 +73,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
   width: 34px; height: 34px; border-radius: 8px; background: var(--ink); color: var(--paper);
   display: grid; place-items: center; font: 800 15px/1 var(--display); letter-spacing: -.02em;
 }
-.logo-name { font: 800 24px/1 var(--display); letter-spacing: -.03em; }
+.logo-name { font: 600 24px/1 var(--display); letter-spacing: -.03em; }
 .logo-name small { font: 600 12px/1 var(--display); letter-spacing: .04em; margin-left: 4px; }
 .meta { font: 500 11px/1.35 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
 .bar .cv-cell { padding-right: 0; padding-left: 16px; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   border: 1.5px solid var(--ink); border-radius: 999px; background: var(--card);
-  padding: 8px 16px; font: 700 12px/1 var(--display); letter-spacing: .08em; text-transform: uppercase;
+  padding: 8px 16px; font: 600 12px/1 var(--display); letter-spacing: .08em; text-transform: uppercase;
   text-decoration: none; white-space: nowrap; transition: background .15s, color .15s, transform .15s;
 }
 .btn:hover { background: var(--ink); color: var(--paper); }
@@ -93,21 +98,21 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .tagrow { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
 .tag {
-  background: var(--yellow); padding: 6px 10px; font: 700 11px/1 var(--display);
+  background: var(--yellow); padding: 6px 10px; font: 600 11px/1 var(--display);
   letter-spacing: .1em; text-transform: uppercase;
 }
 .status { display: inline-flex; align-items: center; gap: 7px; font: 500 11px/1 var(--mono); color: var(--ink-soft); text-transform: uppercase; letter-spacing: .06em; }
 .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px #3E9B5733; }
 h1 {
   margin: 0;
-  font: 800 clamp(28px, 3.7vw, 54px)/1.04 var(--display);
-  letter-spacing: -.02em;
+  font: 500 clamp(28px, 4.4vw, 48px)/1.08 var(--display);
+  letter-spacing: -.01em;
   text-transform: uppercase;
   text-wrap: balance;
 }
-h1 em { font-style: italic; font-weight: 800; }
+h1 em { font-style: italic; font-weight: 500; }
 .hello { display: flex; gap: 28px; align-items: flex-start; margin-top: 16px; flex-wrap: wrap; }
-.hand { font: 600 22px/1.05 var(--hand); color: var(--ink); }
+.hand { font: 500 22px/1.05 var(--hand); color: var(--ink); white-space: nowrap; }
 .hand span { display: block; padding-left: 22px; }
 .hand span:first-child { padding-left: 0; }
 .hand span:first-child::before { content: "+ "; }
@@ -122,6 +127,38 @@ h1 em { font-style: italic; font-weight: 800; }
 .spin { animation: spin 14s linear infinite; transform-origin: center; transform-box: fill-box; }
 @keyframes spin { to { transform: rotate(360deg) } }
 
+/* ---------- featured ---------- */
+.featured {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 24px;
+  padding-block: 22px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 18px;
+}
+.feat-side { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.feat-side h2 { margin: 0; font: 600 15px/1 var(--display); letter-spacing: .06em; text-transform: uppercase; }
+.feat-side p { margin: 0; font-size: 12.5px; color: var(--ink-soft); }
+.feat-side .btn { margin-top: 4px; border-radius: 0; padding: 9px 18px; }
+.feat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.feat {
+  display: flex; flex-direction: column; text-align: left;
+  background: var(--card); border: 1px solid var(--rule); padding: 0;
+  transition: transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s;
+}
+.feat:hover { transform: translateY(-4px); box-shadow: 0 8px 0 -2px var(--ink); }
+.feat-thumb { position: relative; aspect-ratio: 16 / 10; max-width: 100%; display: grid; place-items: center; background: var(--paper-2); overflow: hidden; }
+.feat-thumb.dark { background: var(--ink); }
+.feat-thumb svg { width: 72%; height: auto; }
+.feat-tag { position: absolute; top: 10px; left: 10px; padding: 4px 7px; font: 600 9.5px/1 var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
+.feat-body { padding: 12px 14px 14px; display: grid; gap: 4px; }
+.feat-title { font: 600 14px/1.3 var(--display); }
+.feat-line { font-size: 12px; color: var(--ink-soft); line-height: 1.45; }
+.feat-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font: 500 10.5px/1 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft); }
+.feat-foot svg { width: 18px; height: 18px; color: var(--ink); transition: transform .2s; }
+.feat:hover .feat-foot svg { transform: translateX(4px); }
+
 /* ---------- tiles ---------- */
 .tiles {
   display: grid;
@@ -135,7 +172,7 @@ h1 em { font-style: italic; font-weight: 800; }
   display: flex; flex-direction: column;
   border: 0; text-align: left;
   padding: 18px 18px 16px;
-  min-height: 250px;
+  min-height: 240px;
   transition: transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s;
   overflow: hidden;
 }
@@ -147,8 +184,8 @@ h1 em { font-style: italic; font-weight: 800; }
 .t-about { background: var(--yellow); }
 .t-toolkit { background: var(--stone); }
 .tile-head { display: flex; align-items: baseline; gap: 6px; }
-.tile-letter { font: 800 clamp(44px, 4.4vw, 64px)/.8 var(--display); letter-spacing: -.04em; }
-.tile-name { font: 800 13px/1 var(--display); letter-spacing: .06em; text-transform: uppercase; }
+.tile-letter { font: 500 clamp(44px, 4.4vw, 58px)/.8 var(--display); letter-spacing: -.03em; }
+.tile-name { font: 600 12px/1 var(--display); letter-spacing: .06em; text-transform: uppercase; }
 .tile-desc { margin: 12px 0 0; font-size: 12.5px; line-height: 1.45; max-width: 24ch; }
 .tile-art { flex: 1; display: grid; place-items: center; padding-block: 10px; min-height: 90px; }
 .tile-art svg { width: min(120px, 70%); height: auto; max-height: 120px; transition: transform .25s; }
@@ -192,8 +229,8 @@ h1 em { font-style: italic; font-weight: 800; }
   padding-top: max(14px, env(safe-area-inset-top, 0px));
   padding-bottom: 14px;
 }
-.panel-letter { font: 800 56px/.8 var(--display); letter-spacing: -.04em; }
-.panel-title { font: 800 20px/1.1 var(--display); text-transform: uppercase; letter-spacing: .02em; }
+.panel-letter { font: 500 56px/.8 var(--display); letter-spacing: -.04em; }
+.panel-title { font: 600 20px/1.1 var(--display); text-transform: uppercase; letter-spacing: .02em; }
 .panel-sub { font-size: 13px; margin-top: 3px; }
 .panel-head .spacer { flex: 1; }
 .close {
@@ -217,22 +254,22 @@ h1 em { font-style: italic; font-weight: 800; }
 .item:hover { border-color: var(--rule); transform: translateX(3px); }
 .item[aria-current="true"] { border-color: var(--ink); box-shadow: 4px 4px 0 var(--accent, var(--ink)); }
 .item-kicker { font: 500 10.5px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
-.item-title { font: 700 15px/1.25 var(--display); }
+.item-title { font: 600 15px/1.25 var(--display); }
 .item-line { font-size: 12.5px; color: var(--ink-soft); }
 
 .detail { overflow-y: auto; padding-block: 28px 40px; }
 .detail-inner { max-width: 760px; display: grid; gap: 22px; }
 .chip-label {
   display: inline-block; background: var(--accent, var(--stone)); padding: 5px 9px;
-  font: 700 10.5px/1 var(--display); letter-spacing: .1em; text-transform: uppercase;
+  font: 600 10.5px/1 var(--display); letter-spacing: .1em; text-transform: uppercase;
 }
-.detail h2 { margin: 10px 0 0; font: 800 clamp(24px, 3vw, 38px)/1.08 var(--display); letter-spacing: -.02em; text-wrap: balance; }
+.detail h2 { margin: 10px 0 0; font: 500 clamp(24px, 3vw, 36px)/1.1 var(--display); letter-spacing: -.01em; text-wrap: balance; }
 .detail .where { margin-top: 6px; color: var(--ink-soft); font: 500 12px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .05em; }
 .detail p { margin: 0; max-width: 65ch; font-size: 15px; line-height: 1.6; }
 .detail ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; max-width: 65ch; font-size: 14.5px; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
 .stat { background: var(--card); padding: 14px 16px; border-left: 4px solid var(--accent, var(--ink)); }
-.stat b { display: block; font: 800 30px/1 var(--display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.stat b { display: block; font: 600 30px/1 var(--display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
 .stat span { font-size: 12px; color: var(--ink-soft); }
 .sec-label { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
 .tools { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -244,23 +281,21 @@ h1 em { font-style: italic; font-weight: 800; }
 /* about + toolkit panels */
 .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
 .box { background: var(--card); padding: 16px; display: grid; gap: 4px; align-content: start; }
-.box h3 { margin: 0; font: 700 15px/1.3 var(--display); }
+.box h3 { margin: 0; font: 600 15px/1.3 var(--display); }
 .box .when { font: 500 11px/1.3 var(--mono); color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
 .box p { font-size: 13.5px; }
 .lang-row { display: flex; flex-wrap: wrap; gap: 6px; }
 
 /* ---------- responsive ---------- */
-@media (min-width: 1000px) and (min-height: 700px) {
-  .page { height: 100%; }
-  .tiles { min-height: 0; }
-  .tile { min-height: 0; }
-}
 @media (max-width: 1000px) {
   .bar { grid-template-columns: auto 1fr auto; }
   .bar .hide-md { display: none; }
   .hero { grid-template-columns: 1fr; }
   .doodles { display: none; }
   .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .featured { grid-template-columns: 1fr; gap: 14px; }
+  .feat-side { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+  .feat-side .btn { margin-top: 0; }
   .tile { min-height: 210px; }
   .foot { grid-template-columns: 1fr 1fr; }
   .foot .made { display: none; }
@@ -270,6 +305,8 @@ h1 em { font-style: italic; font-weight: 800; }
   .bar .meta-cell { display: none; }
   .logo { padding-right: 8px; }
   .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .feat-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
+  .feat { flex: 0 0 78%; scroll-snap-align: start; }
   .tile { min-height: 190px; padding: 14px; }
   .tile-desc { font-size: 12px; }
   .t-toolkit { grid-column: span 2; min-height: 150px; }
@@ -294,10 +331,10 @@ h1 em { font-style: italic; font-weight: 800; }
   <header class="bar wrap">
     <a class="logo" href="#" aria-label="Natalie Sim, home">
       <span class="logo-mark">NS</span>
-      <span class="logo-name">natalie sim<small>.DATA</small></span>
+      <span class="logo-name">natalie sim</span>
     </a>
     <div class="meta meta-cell">Data science<br>Machine learning · Analytics</div>
-    <div class="meta meta-cell hide-md">B.CS Data Science, UMS<br>Class of 2026</div>
+    <div class="meta meta-cell hide-md">B.CS Data Science, UMS<br>Graduate, 2026</div>
     <div class="meta meta-cell hide-md">Based in<br>Kuching, Malaysia</div>
     <div class="cv-cell">
       <a class="btn solid cv-link" href="assets/NatalieSim_CV2026.pdf" download="NatalieSim_CV2026.pdf" target="_blank" rel="noopener">
@@ -311,13 +348,13 @@ h1 em { font-style: italic; font-weight: 800; }
   <section class="hero wrap">
     <div>
       <div class="tagrow">
-        <span class="tag">Project database</span>
-        <span class="status">Open to data roles</span>
+        <span class="tag">Digital portfolio</span>
+        <span class="status">Open to tech roles</span>
       </div>
-      <h1>Models, dashboards, graphs, experiments, and <em>well-cleaned</em> data.</h1>
+      <h1>Bringing <em>visions</em> to life with digital solutions.</h1>
       <div class="hello">
-        <div class="hand" aria-hidden="true"><span>cleaning</span><span>modelling</span><span>shipping</span></div>
-        <p class="intro">Hi, I'm <b>Natalie</b>. I study data science at Universiti Malaysia Sabah and recently built Maxis's first customer-level churn model. Tap a tile to see what I've made.</p>
+        <div class="hand" aria-hidden="true"><span>communicating</span><span>designing</span><span>building</span><span>delivering</span></div>
+        <p class="intro">Hi, I'm <b>Natalie</b>! I'm a data science graduate from Universiti Malaysia Sabah (UMS). During my data analyst internship at Maxis, I built the company's first customer churn prediction model. Lately I've been building websites for small businesses, alongside side projects in game development and predictive machine learning. I love solving problems with digital solutions.</p>
       </div>
     </div>
 
@@ -366,6 +403,82 @@ h1 em { font-style: italic; font-weight: 800; }
         <text x="46" y="48" text-anchor="middle" fill="#F3C03E" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="28">13×</text>
         <text x="46" y="66" text-anchor="middle" fill="#F1EEE7" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1">LIFT</text>
       </svg>
+    </div>
+  </section>
+
+  <!-- featured -->
+  <section class="featured wrap" aria-labelledby="featTitle">
+    <div class="feat-side">
+      <h2 id="featTitle">Featured</h2>
+      <p>Highlights from my internship, degree and client work.</p>
+      <button class="btn" type="button" id="viewAll">View all</button>
+    </div>
+    <div class="feat-row">
+      <button class="feat" type="button" data-open="school" data-pid="fyp">
+        <span class="feat-thumb">
+          <span class="feat-tag" style="background:var(--blue)">Final year project</span>
+          <svg viewBox="0 0 160 100" aria-hidden="true">
+            <g stroke="#1C1B19" stroke-width="1.8" fill="none"><path d="M24 70L58 30L96 46L128 22M58 30L80 82L96 46M24 70L80 82L128 70L96 46"/></g>
+            <circle cx="24" cy="70" r="8" fill="#E25A2C" stroke="#1C1B19" stroke-width="1.8"/>
+            <circle cx="58" cy="30" r="10" fill="#3D85CC" stroke="#1C1B19" stroke-width="1.8"/>
+            <circle cx="96" cy="46" r="8" fill="#F3C03E" stroke="#1C1B19" stroke-width="1.8"/>
+            <circle cx="80" cy="82" r="7" fill="#3E9B57" stroke="#1C1B19" stroke-width="1.8"/>
+            <circle cx="128" cy="22" r="6" fill="#E78AAE" stroke="#1C1B19" stroke-width="1.8"/>
+            <circle cx="128" cy="70" r="7" fill="#FFFFFF" stroke="#1C1B19" stroke-width="1.8"/>
+            <g fill="#1C1B19"><circle cx="140" cy="40" r="1.6"/><circle cx="146" cy="50" r="1.6"/><circle cx="136" cy="54" r="1.6"/><circle cx="14" cy="42" r="1.6"/><circle cx="20" cy="34" r="1.6"/></g>
+          </svg>
+        </span>
+        <span class="feat-body">
+          <span class="feat-title">Swarm-Optimized GNNs for Drug Repurposing</span>
+          <span class="feat-line">PSO and ACO tune a graph neural network on a biomedical knowledge graph.</span>
+          <span class="feat-foot"><span>2025 – 2026</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span>
+        </span>
+      </button>
+      <button class="feat" type="button" data-open="personal" data-pid="etal">
+        <span class="feat-thumb">
+          <span class="feat-tag" style="background:var(--pink)">Client website</span>
+          <svg viewBox="0 0 160 100" aria-hidden="true">
+            <rect x="20" y="12" width="120" height="78" rx="5" fill="#FFFFFF" stroke="#1C1B19" stroke-width="1.8"/>
+            <path d="M20 26h120" stroke="#1C1B19" stroke-width="1.8"/>
+            <circle cx="29" cy="19" r="2.4" fill="#E25A2C"/><circle cx="37" cy="19" r="2.4" fill="#F3C03E"/><circle cx="45" cy="19" r="2.4" fill="#3E9B57"/>
+            <rect x="30" y="36" width="52" height="7" fill="#1C1B19"/>
+            <rect x="30" y="48" width="40" height="4" fill="#C9C3B8"/>
+            <rect x="30" y="56" width="46" height="4" fill="#C9C3B8"/>
+            <rect x="30" y="68" width="26" height="10" rx="5" fill="#E78AAE" stroke="#1C1B19" stroke-width="1.5"/>
+            <rect x="92" y="36" width="38" height="42" fill="#F3C03E" stroke="#1C1B19" stroke-width="1.5"/>
+            <circle cx="111" cy="52" r="8" fill="#FFFFFF" stroke="#1C1B19" stroke-width="1.5"/>
+            <path d="M96 76l10-10 8 6 12-12v16z" fill="#3E9B57"/>
+          </svg>
+        </span>
+        <span class="feat-body">
+          <span class="feat-title">Website for Etal</span>
+          <span class="feat-line">A business website designed and built to the client's brief.</span>
+          <span class="feat-foot"><span>Freelance</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span>
+        </span>
+      </button>
+      <button class="feat" type="button" data-open="work" data-pid="churn">
+        <span class="feat-thumb dark">
+          <span class="feat-tag" style="background:var(--orange)">Maxis internship</span>
+          <svg viewBox="0 0 160 100" aria-hidden="true">
+            <g stroke="#FAF8F4" stroke-width="1.2" opacity=".25"><path d="M20 84h124M20 64h124"/></g>
+            <rect x="26" y="20" width="10" height="64" fill="#E25A2C"/>
+            <rect x="40" y="50" width="10" height="34" fill="#F3C03E"/>
+            <rect x="54" y="62" width="10" height="22" fill="#F3C03E"/>
+            <rect x="68" y="70" width="10" height="14" fill="#3D85CC"/>
+            <rect x="82" y="74" width="10" height="10" fill="#3D85CC"/>
+            <rect x="96" y="77" width="10" height="7" fill="#3D85CC"/>
+            <rect x="110" y="79" width="10" height="5" fill="#3D85CC"/>
+            <rect x="124" y="80" width="10" height="4" fill="#3D85CC"/>
+            <text x="134" y="34" text-anchor="end" fill="#FAF8F4" font-family="Archivo, Arial, sans-serif" font-weight="600" font-size="20">13×</text>
+            <text x="134" y="45" text-anchor="end" fill="#FAF8F4" opacity=".7" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing=".6">LIFT · TOP 1%</text>
+          </svg>
+        </span>
+        <span class="feat-body">
+          <span class="feat-title">Customer Churn Prediction Model</span>
+          <span class="feat-line">XGBoost on BigQuery. Catches 50.7% of churners in the top-risk decile.</span>
+          <span class="feat-foot"><span>Mar – Aug 2026</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span>
+        </span>
+      </button>
     </div>
   </section>
 
@@ -721,7 +834,7 @@ const META = {
 };
 
 let lastTrigger = null;
-function openPanel(key) {
+function openPanel(key, pid) {
   const m = META[key];
   if (!m) return;
   panel.style.setProperty("--accent", m.color);
@@ -730,7 +843,7 @@ function openPanel(key) {
   document.getElementById("panelSub").textContent = m.sub;
   if (key === "about") renderAbout();
   else if (key === "toolkit") renderToolkit();
-  else renderProjects(key);
+  else renderProjects(key, pid);
   panel.hidden = false;
   document.body.style.overflow = "hidden";
   document.getElementById("closePanel").focus();
@@ -743,7 +856,17 @@ function closePanel() {
   if (lastTrigger) lastTrigger.focus();
 }
 
-document.querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => { lastTrigger = b; openPanel(b.dataset.open); }));
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-open]");
+  if (!b) return;
+  lastTrigger = b;
+  openPanel(b.dataset.open, b.dataset.pid);
+});
+document.getElementById("viewAll").addEventListener("click", () => {
+  const t = document.getElementById("tiles");
+  t.scrollIntoView({ behavior: "smooth", block: "start" });
+  t.querySelector(".tile").focus({ preventScroll: true });
+});
 document.getElementById("closePanel").addEventListener("click", closePanel);
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !panel.hidden) closePanel(); });
 window.addEventListener("hashchange", () => { const k = location.hash.slice(1); if (META[k]) openPanel(k); });
