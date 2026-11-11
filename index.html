@@ -161,6 +161,9 @@ h1 em { font-style: italic; font-weight: 500; }
 .feat-thumb svg { width: 72%; height: auto; }
 .feat-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: left bottom; }
 .feat-tag { z-index: 1; }
+.feat-thumb.logo { background: var(--card); border-bottom: 1px solid var(--rule); }
+.feat-thumb.logo img { object-fit: contain; object-position: center; padding: 18% 14% 10%; }
+.detail-logo { display: block; height: 30px; width: auto; margin-bottom: 14px; }
 .feat-tag { position: absolute; top: 10px; left: 10px; padding: 4px 7px; font: 600 9.5px/1 var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
 .feat-body { padding: 12px 14px 14px; display: grid; gap: 4px; }
 .feat-title { font: 600 14px/1.3 var(--display); }
@@ -460,25 +463,13 @@ h1 em { font-style: italic; font-weight: 500; }
         </span>
       </button>
       <button class="feat" type="button" data-open="work" data-pid="churn">
-        <span class="feat-thumb dark">
+        <span class="feat-thumb logo">
           <span class="feat-tag" style="background:var(--orange)">Maxis internship</span>
-          <svg viewBox="0 0 160 100" aria-hidden="true">
-            <g stroke="#FAF8F4" stroke-width="1.2" opacity=".25"><path d="M20 84h124M20 64h124"/></g>
-            <rect x="26" y="20" width="10" height="64" fill="#E25A2C"/>
-            <rect x="40" y="50" width="10" height="34" fill="#F3C03E"/>
-            <rect x="54" y="62" width="10" height="22" fill="#F3C03E"/>
-            <rect x="68" y="70" width="10" height="14" fill="#3D85CC"/>
-            <rect x="82" y="74" width="10" height="10" fill="#3D85CC"/>
-            <rect x="96" y="77" width="10" height="7" fill="#3D85CC"/>
-            <rect x="110" y="79" width="10" height="5" fill="#3D85CC"/>
-            <rect x="124" y="80" width="10" height="4" fill="#3D85CC"/>
-            <text x="134" y="34" text-anchor="end" fill="#FAF8F4" font-family="Archivo, Arial, sans-serif" font-weight="600" font-size="20">13×</text>
-            <text x="134" y="45" text-anchor="end" fill="#FAF8F4" opacity=".7" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing=".6">LIFT · TOP 1%</text>
-          </svg>
+          <img src="assets/maxis/maxis-logo.jpg" alt="Maxis" loading="lazy">
         </span>
         <span class="feat-body">
           <span class="feat-title">Customer Churn Prediction Model</span>
-          <span class="feat-line">An XGBoost model that isolates half of all churners within the highest-risk decile.</span>
+          <span class="feat-line">One churn-risk view across every Maxis product a customer holds, with 13× lift in the top percentile.</span>
           <span class="feat-foot"><span>Mar – Aug 2026</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span>
         </span>
       </button>
@@ -546,17 +537,21 @@ const SECTIONS = {
         id: "churn",
         title: "Customer Churn Prediction Model",
         kicker: "Maxis · Applied Analytics",
-        line: "The Applied Analytics team's first customer-level churn model.",
+        line: "A single view of churn risk across every product a customer holds.",
         when: "Mar – Aug 2026", where: "Menara Maxis, Kuala Lumpur",
-        summary: "Designed and delivered the Applied Analytics team's first customer-level churn model, giving retention teams a ranked view of the broadband subscribers most likely to leave.",
+        logo: "assets/maxis/maxis-logo.jpg",
+        summary: "Maxis already ran churn models for individual subscriptions, but none could see everything a single customer holds. I built the Applied Analytics team's first customer-level churn model, giving the marketing teams behind Maxis Postpaid, Hotlink Postpaid, fibre broadband (FTTH) and wireless broadband (WBB) one ranked view of their highest-risk customers.",
+        context: "The aim is proactive retention: reaching out when the model picks up the first faint signals of risk, before a customer leaves. Multi-product customers sit at the heart of this, as they are the relationships Maxis most wants to keep.",
         points: [
-          "Engineered customer-level features in SQL on BigQuery.",
-          "Trained and tuned a gradient-boosted (XGBoost) classifier in Python.",
-          "Produced risk-ranked deciles so retention campaigns can be directed where they matter most.",
+          "Unified usage, billing, contract and complaints data into a single customer-level view spanning Postpaid, Hotlink Postpaid, FTTH and WBB.",
+          "Trained an XGBoost classifier in Python to estimate each customer's probability of churn.",
+          "Ranked customers into risk deciles and percentiles, so marketing teams know exactly whom to engage first.",
+          "Placed multi-product customers at the centre of the design, as the most valuable relationships to retain.",
         ],
         stats: [
           { v: "13×", l: "lift within the top percentile of scored customers" },
           { v: "50.7%", l: "of all churners captured in the highest-risk decile" },
+          { v: "4", l: "product lines covered in one model" },
         ],
         tools: ["Python", "SQL", "XGBoost", "BigQuery", "Vertex AI", "Google Cloud Platform", "pandas", "scikit-learn"],
         github: null,
@@ -754,11 +749,13 @@ function projectDetail(p) {
     : `<span class="note">${LOCK}${esc(p.note || "No public repository.")}</span>`;
   return `<div class="detail-inner">
     <div>
+      ${p.logo ? `<img class="detail-logo" src="${esc(p.logo)}" alt="">` : ""}
       <span class="chip-label">${esc(p.kicker)}</span>
       <h2>${esc(p.title)}</h2>
       <div class="where">${esc(p.when)} · ${esc(p.where)}</div>
     </div>
     <p>${esc(p.summary)}</p>
+    ${p.context ? `<p>${esc(p.context)}</p>` : ""}
     ${stats}
     ${gallery}
     ${points}
