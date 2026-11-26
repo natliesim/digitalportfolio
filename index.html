@@ -119,7 +119,13 @@ h1 {
 }
 h1 em { font-style: italic; font-weight: 400; }
 .hello { display: flex; gap: 28px; align-items: flex-start; margin-top: 26px; }
-.hello .intro { flex: 1; min-width: 0; }
+.hello .hello-text { flex: 1; min-width: 0; display: grid; gap: 10px; }
+.greet { margin: 0; display: grid; justify-items: start; gap: 8px; font: 400 clamp(22px, 2.6vw, 28px)/1.15 var(--display); color: var(--ink); }
+.greet-text { display: block; height: 1.25em; line-height: 1.25em; white-space: nowrap; transition: opacity .35s ease, transform .35s ease; }
+.greet-text.out { opacity: 0; transform: translateY(6px); }
+.greet-text:lang(zh) { font-family: "Noto Serif SC", "Songti SC", "STSong", serif; font-size: .9em; height: 1.39em; line-height: 1.39em; }
+.greet-text:lang(ko) { font-family: "Noto Serif KR", "AppleMyungjo", "Batang", serif; font-size: .9em; height: 1.39em; line-height: 1.39em; }
+.greet-lang { font: 500 9.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 7px; background: var(--card); transition: opacity .35s ease; }
 @media (max-width: 520px) { .hello { flex-direction: column; gap: 12px; } }
 .hand { font: 500 20px/1.05 var(--hand); color: var(--ink); white-space: nowrap; }
 .hand span { display: block; padding-left: 22px; }
@@ -420,7 +426,13 @@ h1 em { font-style: italic; font-weight: 400; }
       <h1>Bringing <em>visions</em> to life with digital solutions.</h1>
       <div class="hello">
         <div class="hand" aria-hidden="true"><span>communicating</span><span>designing</span><span>building</span><span>delivering</span></div>
-        <p class="intro">I'm <b>Natalie</b>, a data science graduate of Universiti Malaysia Sabah (UMS). As a Data Analyst Intern at Maxis, I developed the company's first customer churn prediction model. I now design and build websites for small and growing businesses, and explore game development and predictive modelling in my own projects. I'm drawn to problems where data, design and engineering meet.</p>
+        <div class="hello-text">
+          <p class="greet" aria-label="Hi, I'm Natalie Sim.">
+            <span class="greet-lang" id="greetLang" aria-hidden="true">English</span>
+            <span class="greet-text" id="greet" aria-hidden="true" lang="en">Hi, I'm Natalie Sim.</span>
+          </p>
+          <p class="intro">I'm a data science graduate of Universiti Malaysia Sabah (UMS). As a Data Analyst Intern at Maxis, I developed the company's first customer churn prediction model. I now design and build websites for small and growing businesses, and explore game development and predictive modelling in my own projects. I'm drawn to problems where data, design and engineering meet.</p>
+        </div>
       </div>
     </div>
 
@@ -1059,6 +1071,26 @@ panel.addEventListener("click", e => { if (e.target === panel) closePanel(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !panel.hidden) closePanel(); });
 window.addEventListener("hashchange", () => { const k = location.hash.slice(1); if (META[k]) openPanel(k); });
 if (META[location.hash.slice(1)]) openPanel(location.hash.slice(1));
+
+// Greeting that cycles through the languages Natalie speaks, every 5 seconds.
+(() => {
+  const greetings = [
+    { lang: "en", label: "English", text: "Hi, I'm Natalie Sim." },
+    { lang: "zh", label: "中文", text: "你好，我是 Natalie Sim。" },
+    { lang: "ms", label: "Bahasa Melayu", text: "Hai, saya Natalie Sim." },
+    { lang: "ko", label: "한국어", text: "안녕하세요, 나탈리 심입니다." },
+  ];
+  const el = document.getElementById("greet"), tag = document.getElementById("greetLang");
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let i = 0;
+  const show = g => { el.textContent = g.text; el.lang = g.lang; tag.textContent = g.label; };
+  setInterval(() => {
+    i = (i + 1) % greetings.length;
+    if (still) return show(greetings[i]);
+    el.classList.add("out"); tag.style.opacity = 0;
+    setTimeout(() => { show(greetings[i]); el.classList.remove("out"); tag.style.opacity = 1; }, 350);
+  }, 5000);
+})();
 
 document.getElementById("copyMail").addEventListener("click", e => {
   const btn = e.currentTarget, text = "nataliessim@gmail.com";
