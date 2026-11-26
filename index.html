@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&text=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E6%98%AF%E6%B2%88%E6%81%A9%E5%B8%8C%E3%80%82&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&text=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%20%EB%82%98%ED%83%88%EB%A6%AC%20%EC%8B%AC%EC%9E%85%EB%8B%88%EB%8B%A4.&display=swap">
 <style>
 /* Layout: centred vertical column with empty sides. Grid header bar, hero with doodles, a row of five lettered tiles, footer strip. Tiles open full panels. */
 :root {
@@ -120,13 +122,12 @@ h1 {
 h1 em { font-style: italic; font-weight: 400; }
 .hello { display: flex; gap: 28px; align-items: flex-start; margin-top: 26px; }
 .hello .hello-text { flex: 1; min-width: 0; display: grid; gap: 10px; }
-.greet { margin: 0; display: grid; justify-items: start; gap: 8px; font: 400 clamp(22px, 2.6vw, 28px)/1.15 var(--display); color: var(--ink); }
+.greet { margin: 0; font: 600 clamp(28px, 3vw, 36px)/1.15 var(--hand); color: var(--ink); }
 .greet-text { display: block; height: 1.25em; line-height: 1.25em; white-space: nowrap; transition: opacity .35s ease, transform .35s ease; }
 .greet-text.typing::after { content: ""; display: inline-block; width: 2px; height: .85em; margin-left: 4px; vertical-align: -.08em; background: currentColor; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
-.greet-text:lang(zh) { font-family: "Noto Serif SC", "Songti SC", "STSong", serif; font-size: .9em; height: 1.39em; line-height: 1.39em; }
-.greet-text:lang(ko) { font-family: "Noto Serif KR", "AppleMyungjo", "Batang", serif; font-size: .9em; height: 1.39em; line-height: 1.39em; }
-.greet-lang { font: 500 9.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 7px; background: var(--card); transition: opacity .35s ease; }
+.greet-text:lang(zh) { font-family: "Ma Shan Zheng", var(--hand); font-weight: 400; font-size: .85em; height: 1.47em; line-height: 1.47em; }
+.greet-text:lang(ko) { font-family: "Nanum Pen Script", var(--hand); font-weight: 400; font-size: 1em; }
 @media (max-width: 520px) { .hello { flex-direction: column; gap: 12px; } }
 .hand { font: 500 20px/1.05 var(--hand); color: var(--ink); white-space: nowrap; }
 .hand span { display: block; padding-left: 22px; }
@@ -349,7 +350,6 @@ h1 em { font-style: italic; font-weight: 400; }
 .stat em { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--rule); font-size: 11px; font-style: normal; color: var(--ink-soft); }
 .about-stats .stat b { font-size: 28px; line-height: 1.1; }
 .about-stats .stat span { display: block; margin-top: 4px; }
-.stat-feature { border: 1.5px solid var(--ink); border-left-width: 4px; box-shadow: 4px 4px 0 var(--ink); }
 .timeline { list-style: none; margin: 0; padding: 0 0 0 22px; position: relative; display: grid; gap: 18px; max-width: 640px; }
 .timeline::before { content: ""; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1.5px; background: var(--ink); opacity: .25; }
 .timeline li { position: relative; display: grid; gap: 2px; }
@@ -441,7 +441,6 @@ h1 em { font-style: italic; font-weight: 400; }
         <div class="hand" aria-hidden="true"><span>communicating</span><span>designing</span><span>building</span><span>delivering</span></div>
         <div class="hello-text">
           <p class="greet" aria-label="Hi, I'm Natalie Sim.">
-            <span class="greet-lang" id="greetLang" aria-hidden="true">English</span>
             <span class="greet-text" id="greet" aria-hidden="true" lang="en">Hi, I'm Natalie Sim.</span>
           </p>
           <p class="intro">I'm a data science graduate of Universiti Malaysia Sabah (UMS). As a Data Analyst Intern at Maxis, I developed the company's first customer churn prediction model. I now design and build websites for small and growing businesses, and explore game development and predictive modelling in my own projects. I'm drawn to problems where data, design and engineering meet.</p>
@@ -985,7 +984,7 @@ function renderAbout() {
     <div class="stats about-stats">
       <div class="stat"><b>3.85</b><span>CGPA out of 4.00</span><em>Anugerah Khas Dekan (Dean's Special Award)</em></div>
       <div class="stat"><b>Dean's List</b><span>All semesters</span></div>
-      <div class="stat stat-feature"><b>Maxis Women in Tech Scholar</b><span>1 of 21 scholars nationwide, 2022 cohort</span></div>
+      <div class="stat"><b>Maxis Women in Tech Scholar</b><span>1 of 21 scholars nationwide, 2022 cohort</span></div>
     </div>
     <div>
       <div class="sec-label">Education</div>
@@ -1092,13 +1091,13 @@ if (META[location.hash.slice(1)]) openPanel(location.hash.slice(1));
     { lang: "ms", label: "Bahasa Melayu", text: "Hai, saya Natalie Sim." },
     { lang: "ko", label: "한국어", text: "안녕하세요, 나탈리 심입니다." },
   ];
-  const el = document.getElementById("greet"), tag = document.getElementById("greetLang");
+  const el = document.getElementById("greet");
   const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const sleep = ms => new Promise(r => setTimeout(r, ms));
-  const TYPE = 70, ERASE = 32, SLOT = 5000;
+  const TYPE = 130, ERASE = 60, SLOT = 5000;
   let i = 0;
   if (still) {
-    setInterval(() => { i = (i + 1) % greetings.length; const g = greetings[i]; el.textContent = g.text; el.lang = g.lang; tag.textContent = g.label; }, SLOT);
+    setInterval(() => { i = (i + 1) % greetings.length; const g = greetings[i]; el.textContent = g.text; el.lang = g.lang; }, SLOT);
     return;
   }
   el.classList.add("typing");
@@ -1111,7 +1110,7 @@ if (META[location.hash.slice(1)]) openPanel(location.hash.slice(1));
       await sleep(220);
       i = (i + 1) % greetings.length;
       const g = greetings[i], next = [...g.text];
-      el.lang = g.lang; tag.textContent = g.label; start = Date.now();
+      el.lang = g.lang; start = Date.now();
       for (let n = 1; n <= next.length; n++) { el.textContent = next.slice(0, n).join(""); await sleep(TYPE); }
     }
   })();
