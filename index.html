@@ -122,7 +122,8 @@ h1 em { font-style: italic; font-weight: 400; }
 .hello .hello-text { flex: 1; min-width: 0; display: grid; gap: 10px; }
 .greet { margin: 0; display: grid; justify-items: start; gap: 8px; font: 400 clamp(22px, 2.6vw, 28px)/1.15 var(--display); color: var(--ink); }
 .greet-text { display: block; height: 1.25em; line-height: 1.25em; white-space: nowrap; transition: opacity .35s ease, transform .35s ease; }
-.greet-text.out { opacity: 0; transform: translateY(6px); }
+.greet-text.typing::after { content: ""; display: inline-block; width: 2px; height: .85em; margin-left: 4px; vertical-align: -.08em; background: currentColor; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
 .greet-text:lang(zh) { font-family: "Noto Serif SC", "Songti SC", "STSong", serif; font-size: .9em; height: 1.39em; line-height: 1.39em; }
 .greet-text:lang(ko) { font-family: "Noto Serif KR", "AppleMyungjo", "Batang", serif; font-size: .9em; height: 1.39em; line-height: 1.39em; }
 .greet-lang { font: 500 9.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 7px; background: var(--card); transition: opacity .35s ease; }
@@ -345,11 +346,10 @@ h1 em { font-style: italic; font-weight: 400; }
 .about-head > div { min-width: 0; }
 .about-photo { width: 112px; height: 112px; flex: none; border-radius: 50%; object-fit: cover; border: 1px solid var(--rule); background: var(--card); }
 @media (max-width: 640px) { .about-head { flex-direction: column; align-items: flex-start; gap: 14px; } .about-photo { width: 84px; height: 84px; } }
-.stat em { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--rule); font: 500 11.5px/1.4 var(--body); font-style: normal; color: var(--ink); }
-.stat-word b { font-size: 25px; line-height: 1.1; }
-.stat-feature { background: var(--yellow); border-left-color: var(--ink); }
-.stat-feature b { font-size: 29px; }
-.stat-feature span { color: var(--ink); }
+.stat em { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--rule); font-size: 11px; font-style: normal; color: var(--ink-soft); }
+.about-stats .stat b { font-size: 28px; line-height: 1.1; }
+.about-stats .stat span { display: block; margin-top: 4px; }
+.stat-feature { border: 1.5px solid var(--ink); border-left-width: 4px; box-shadow: 4px 4px 0 var(--ink); }
 .timeline { list-style: none; margin: 0; padding: 0 0 0 22px; position: relative; display: grid; gap: 18px; max-width: 640px; }
 .timeline::before { content: ""; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1.5px; background: var(--ink); opacity: .25; }
 .timeline li { position: relative; display: grid; gap: 2px; }
@@ -982,10 +982,10 @@ function renderAbout() {
       </div>
     </div>
     <p>I'm a computer science graduate with the mind of an inventor and a problem solver. I enjoy every stage of making something, from shaping the idea and designing the experience to building it until it works. What drives me is helping people bring their ideas to life, or taking something repetitive and making it ten times easier. Whether it's a churn model or a website for a small business, I love using digital and data-driven solutions to make a real difference.</p>
-    <div class="stats">
+    <div class="stats about-stats">
       <div class="stat"><b>3.85</b><span>CGPA out of 4.00</span><em>Anugerah Khas Dekan (Dean's Special Award)</em></div>
-      <div class="stat stat-word"><b>Dean's List</b><span>All semesters</span></div>
-      <div class="stat stat-word stat-feature"><b>Maxis Women in Tech Scholar</b><span>1 of 21 scholars nationwide, 2022 cohort</span></div>
+      <div class="stat"><b>Dean's List</b><span>All semesters</span></div>
+      <div class="stat stat-feature"><b>Maxis Women in Tech Scholar</b><span>1 of 21 scholars nationwide, 2022 cohort</span></div>
     </div>
     <div>
       <div class="sec-label">Education</div>
@@ -1088,20 +1088,33 @@ if (META[location.hash.slice(1)]) openPanel(location.hash.slice(1));
 (() => {
   const greetings = [
     { lang: "en", label: "English", text: "Hi, I'm Natalie Sim." },
-    { lang: "zh", label: "中文", text: "你好，我是 Natalie Sim。" },
+    { lang: "zh", label: "中文", text: "你好，我是沈恩希。" },
     { lang: "ms", label: "Bahasa Melayu", text: "Hai, saya Natalie Sim." },
     { lang: "ko", label: "한국어", text: "안녕하세요, 나탈리 심입니다." },
   ];
   const el = document.getElementById("greet"), tag = document.getElementById("greetLang");
   const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const TYPE = 70, ERASE = 32, SLOT = 5000;
   let i = 0;
-  const show = g => { el.textContent = g.text; el.lang = g.lang; tag.textContent = g.label; };
-  setInterval(() => {
-    i = (i + 1) % greetings.length;
-    if (still) return show(greetings[i]);
-    el.classList.add("out"); tag.style.opacity = 0;
-    setTimeout(() => { show(greetings[i]); el.classList.remove("out"); tag.style.opacity = 1; }, 350);
-  }, 5000);
+  if (still) {
+    setInterval(() => { i = (i + 1) % greetings.length; const g = greetings[i]; el.textContent = g.text; el.lang = g.lang; tag.textContent = g.label; }, SLOT);
+    return;
+  }
+  el.classList.add("typing");
+  (async () => {
+    let start = Date.now();
+    for (;;) {
+      const chars = [...greetings[i].text];
+      await sleep(Math.max(900, SLOT - (Date.now() - start) - chars.length * ERASE));
+      for (let n = chars.length - 1; n >= 0; n--) { el.textContent = chars.slice(0, n).join(""); await sleep(ERASE); }
+      await sleep(220);
+      i = (i + 1) % greetings.length;
+      const g = greetings[i], next = [...g.text];
+      el.lang = g.lang; tag.textContent = g.label; start = Date.now();
+      for (let n = 1; n <= next.length; n++) { el.textContent = next.slice(0, n).join(""); await sleep(TYPE); }
+    }
+  })();
 })();
 
 document.getElementById("copyMail").addEventListener("click", e => {
