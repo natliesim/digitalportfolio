@@ -345,6 +345,19 @@ h1 em { font-style: italic; font-weight: 400; }
 .about-head > div { min-width: 0; }
 .about-photo { width: 112px; height: 112px; flex: none; border-radius: 50%; object-fit: cover; border: 1px solid var(--rule); background: var(--card); }
 @media (max-width: 640px) { .about-head { flex-direction: column; align-items: flex-start; gap: 14px; } .about-photo { width: 84px; height: 84px; } }
+.stat em { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--rule); font: 500 11.5px/1.4 var(--body); font-style: normal; color: var(--ink); }
+.stat-word b { font-size: 25px; line-height: 1.1; }
+.stat-feature { background: var(--yellow); border-left-color: var(--ink); }
+.stat-feature b { font-size: 29px; }
+.stat-feature span { color: var(--ink); }
+.timeline { list-style: none; margin: 0; padding: 0 0 0 22px; position: relative; display: grid; gap: 18px; max-width: 640px; }
+.timeline::before { content: ""; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1.5px; background: var(--ink); opacity: .25; }
+.timeline li { position: relative; display: grid; gap: 2px; }
+.timeline li::before { content: ""; position: absolute; left: -22px; top: 2px; width: 11px; height: 11px; border-radius: 50%; background: var(--card); border: 1.5px solid var(--ink); }
+.timeline li:first-child::before { background: var(--yellow); }
+.timeline .when { font: 400 10px/1.4 var(--mono); color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+.timeline h3 { margin: 0; font: 400 19px/1.15 var(--display); }
+.timeline p { margin: 2px 0 0; font-size: 13px; line-height: 1.55; color: var(--ink-soft); max-width: 60ch; }
 .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
 .box { background: var(--card); padding: 16px; display: grid; gap: 4px; align-content: start; }
 .box h3 { margin: 0; font: 400 18px/1.15 var(--display); }
@@ -970,19 +983,18 @@ function renderAbout() {
     </div>
     <p>I'm a computer science graduate with the mind of an inventor and a problem solver. I enjoy every stage of making something, from shaping the idea and designing the experience to building it until it works. What drives me is helping people bring their ideas to life, or taking something repetitive and making it ten times easier. Whether it's a churn model or a website for a small business, I love using digital and data-driven solutions to make a real difference.</p>
     <div class="stats">
-      <div class="stat"><b>3.85</b><span>CGPA out of 4.00</span></div>
-      <div class="stat"><b>Every sem</b><span>Dean's List, plus Anugerah Khas Dekan</span></div>
-      <div class="stat"><b>1 of 21</b><span>Maxis Women in Tech scholars, 2022</span></div>
-      <div class="stat"><b>7.5</b><span>IELTS band score, CEFR C1 English</span></div>
+      <div class="stat"><b>3.85</b><span>CGPA out of 4.00</span><em>Anugerah Khas Dekan (Dean's Special Award)</em></div>
+      <div class="stat stat-word"><b>Dean's List</b><span>All semesters</span></div>
+      <div class="stat stat-word stat-feature"><b>Maxis Women in Tech Scholar</b><span>1 of 21 scholars nationwide, 2022 cohort</span></div>
     </div>
     <div>
       <div class="sec-label">Education</div>
-      <div class="grid2">
-        <div class="box"><span class="when">Oct 2022 – Nov 2026</span><h3>Universiti Malaysia Sabah</h3><p>Bachelor of Computer Science, Data Science. CGPA 3.85. Dean's List every semester and recipient of the Anugerah Khas Dekan (Dean's Special Award).</p></div>
-        <div class="box"><span class="when">Sep – Dec 2025</span><h3>Universitas Diponegoro</h3><p>Semester abroad, Informatika (DEEP exchange), Semarang, Indonesia. GPA 4.00.</p></div>
-        <div class="box"><span class="when">2020 – 2022</span><h3>St. Thomas' Secondary School</h3><p>STPM, Science &amp; Mathematics. CGPA 3.59.</p></div>
-        <div class="box"><span class="when">2015 – 2019</span><h3>Kuching High School</h3><p>SPM, Science stream. 9As.</p></div>
-      </div>
+      <ol class="timeline">
+        <li><span class="when">Oct 2022 – Nov 2026</span><h3>Universiti Malaysia Sabah</h3><p>Bachelor of Computer Science, Data Science. CGPA 3.85, Dean's List every semester and the Anugerah Khas Dekan (Dean's Special Award).</p></li>
+        <li><span class="when">Sep – Dec 2025</span><h3>Universitas Diponegoro</h3><p>Semester abroad, Informatika (DEEP exchange), Semarang, Indonesia. GPA 4.00.</p></li>
+        <li><span class="when">2020 – 2022</span><h3>St. Thomas' Secondary School</h3><p>STPM, Science &amp; Mathematics. CGPA 3.59.</p></li>
+        <li><span class="when">2015 – 2019</span><h3>Kuching High School</h3><p>SPM, Science stream. 9As.</p></li>
+      </ol>
     </div>
     <div>
       <div class="sec-label">Beyond the degree</div>
